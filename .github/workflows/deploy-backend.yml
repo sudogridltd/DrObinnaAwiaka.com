@@ -25,8 +25,7 @@ name: Deploy Backend
 
 on:
   push:
-    tags:
-      - 'production*'
+    branches: [production]
     paths:
       - 'website-backend/**'
       - '.github/workflows/deploy-backend.yml'

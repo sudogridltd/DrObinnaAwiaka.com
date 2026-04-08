@@ -22,8 +22,7 @@ name: Deploy Frontend
 
 on:
   push:
-    tags:
-      - 'production*'
+    branches: [production]
     paths:
       - 'website/**'
       - '.github/workflows/deploy-frontend.yml'
