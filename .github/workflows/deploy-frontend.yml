@@ -2,20 +2,24 @@
 # Deploy Frontend (Vike SSR) → cPanel shared hosting
 #
 # Required GitHub Secrets:
-#   CPANEL_HOST          – server hostname or IP  (e.g. server123.hostingprovider.com)
-#   CPANEL_PORT          – SSH port               (usually 22)
-#   CPANEL_USERNAME      – cPanel account username
-#   CPANEL_SSH_KEY       – SSH private key (Ed25519 or RSA, no passphrase)
-#   FRONTEND_DEPLOY_PATH – absolute path on server (e.g. /home/username/website)
-#   VITE_STRAPI_URL      – Strapi backend URL for SSR data fetching
-#   VITE_STRAPI_API_TOKEN – Strapi read-only API token
+#   CPANEL_HOST              – server hostname or IP (e.g. server123.host.com)
+#   CPANEL_PORT              – SSH port (usually 22)
+#   CPANEL_USERNAME          – cPanel account username
+#   CPANEL_SSH_KEY           – SSH private key (passphrase-protected is fine)
+#   FRONTEND_DEPLOY_PATH     – absolute path on server (/home/username/website)
+#   VITE_STRAPI_URL          – Strapi backend URL (baked into bundle at build time)
+#   VITE_STRAPI_API_TOKEN    – Strapi read-only API token (baked into bundle)
+#
+# NOTE: VITE_* vars are baked into the client/server bundle at build time by Vite.
+#       They do NOT need to be set in cPanel env vars — only set PORT and NODE_ENV
+#       in cPanel Node.js Selector → Environment Variables.
 #
 # cPanel Node.js Selector setup:
-#   - Application root:  /home/username/website
-#   - Application URL:   your-domain.com  (or subfolder)
-#   - Application startup file:  server.js
-#   - Node.js version:   22.x
-#   - Run: "npm install --omit=dev" in Node.js Selector before first run
+#   - Application root:         /home/username/website
+#   - Application URL:          your-domain.com
+#   - Application startup file: server.js
+#   - Node.js version:          22.x
+#   - Environment Variables:    NODE_ENV=production  PORT=<assigned by cPanel>
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Deploy Frontend
@@ -63,17 +67,24 @@ jobs:
           VITE_STRAPI_URL: ${{ secrets.VITE_STRAPI_URL }}
           VITE_STRAPI_API_TOKEN: ${{ secrets.VITE_STRAPI_API_TOKEN }}
 
-      - name: Setup SSH key
+      # ssh-agent loads the key once (handles passphrase-protected keys).
+      # All subsequent ssh/rsync steps use the agent automatically — no -i flag needed.
+      - name: Load SSH key into agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
+
+      - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
 
+      # Syncs only what's needed to run: compiled server, built client, package.json
+      # node_modules are installed fresh on the server so no large upload needed
       - name: Sync build to server
         run: |
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
+            -e "ssh -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
             --exclude='.env' \
             --exclude='.env.*' \
             --exclude='node_modules' \
@@ -85,21 +96,20 @@ jobs:
             --include='public/**' \
             --include='server.js' \
             --include='package.json' \
-            --include='pnpm-lock.yaml' \
             --exclude='*' \
             ./ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
 
+      # npm install on server installs only runtime deps (express, compression, vike).
+      # cPanel can also trigger this via "Run NPM Install" button — both work.
       - name: Install production dependencies & restart app
         run: |
-          ssh -i ~/.ssh/deploy_key \
-            -p ${{ secrets.CPANEL_PORT }} \
+          ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} << 'EOF'
             set -e
             cd ${{ secrets.FRONTEND_DEPLOY_PATH }}
-            # Install production deps only
             npm install --omit=dev --ignore-scripts
-            # Restart Passenger app (cPanel standard mechanism)
+            # Passenger restarts on next request after seeing restart.txt is touched
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Frontend deployed successfully"
           EOF
