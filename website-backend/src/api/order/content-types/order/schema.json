@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": "Product purchases and booking deposits"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "orders"
+    },
+    "customerName": {
+      "type": "string"
+    },
+    "customerEmail": {
+      "type": "email"
+    },
+    "customerPhone": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.order-item"
+    },
+    "subtotal": {
+      "type": "decimal"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "paid", "failed", "refunded", "cancelled"],
+      "default": "pending"
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": ["product", "booking-deposit"],
+      "default": "product"
+    },
+    "bookingSubmission": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::booking-submission.booking-submission"
+    },
+    "orderNumber": {
+      "type": "string",
+      "unique": true,
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "paystackReference": {
+      "type": "string",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "paystackData": {
+      "type": "json",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    }
+  }
+}

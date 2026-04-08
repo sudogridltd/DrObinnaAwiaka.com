@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "booking_submissions",
+  "info": {
+    "singularName": "booking-submission",
+    "pluralName": "booking-submissions",
+    "displayName": "Booking Submission",
+    "description": "Session booking form submissions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "sessionType": {
+      "type": "string",
+      "required": true
+    },
+    "preferredDate": {
+      "type": "date"
+    },
+    "preferredTime": {
+      "type": "string"
+    },
+    "goals": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "payment_pending", "confirmed", "cancelled", "completed", "no-show"],
+      "default": "pending"
+    },
+    "internalNotes": {
+      "type": "text",
+      "description": "Your private notes about this booking — not visible to the client"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "bookings",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "reference": {
+      "type": "integer",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    }
+  }
+}

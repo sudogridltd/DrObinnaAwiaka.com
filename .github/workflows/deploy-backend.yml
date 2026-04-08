@@ -1,0 +1,102 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Deploy Backend (Strapi v5) → cPanel shared hosting
+#
+# Required GitHub Secrets:
+#   CPANEL_HOST          – server hostname or IP
+#   CPANEL_PORT          – SSH port (usually 22)
+#   CPANEL_USERNAME      – cPanel account username
+#   CPANEL_SSH_KEY       – SSH private key (no passphrase)
+#   BACKEND_DEPLOY_PATH  – absolute path on server (e.g. /home/username/website-backend)
+#
+# cPanel Node.js Selector setup:
+#   - Application root:  /home/username/website-backend
+#   - Application URL:   api.your-domain.com  (subdomain recommended)
+#   - Application startup file:  node_modules/.bin/strapi  (with arg: start)
+#     OR set startup command to: node_modules/@strapi/strapi/bin/strapi.js start
+#   - Node.js version:   22.x
+#
+# Required .env on server (set once in cPanel → Node.js Selector → Env Vars):
+#   HOST, PORT, APP_KEYS, API_TOKEN_SALT, ADMIN_JWT_SECRET,
+#   TRANSFER_TOKEN_SALT, JWT_SECRET, DATABASE_CLIENT, DATABASE_FILENAME,
+#   NODE_ENV=production
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Deploy Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website-backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy Strapi to cPanel
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: website-backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: website-backend/package-lock.json
+
+      - name: Install all dependencies
+        run: npm ci
+
+      - name: Build Strapi
+        run: npm run build
+        env:
+          NODE_ENV: production
+          # Strapi requires these at build time for admin panel
+          APP_KEYS: ${{ secrets.STRAPI_APP_KEYS }}
+          API_TOKEN_SALT: ${{ secrets.STRAPI_API_TOKEN_SALT }}
+          ADMIN_JWT_SECRET: ${{ secrets.STRAPI_ADMIN_JWT_SECRET }}
+          TRANSFER_TOKEN_SALT: ${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }}
+          JWT_SECRET: ${{ secrets.STRAPI_JWT_SECRET }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Sync build to server
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='tmp' \
+            --exclude='.tmp' \
+            --exclude='database' \
+            --exclude='public/uploads' \
+            ./ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.BACKEND_DEPLOY_PATH }}/
+
+      - name: Install production dependencies & restart app
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.CPANEL_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} << 'EOF'
+            set -e
+            cd ${{ secrets.BACKEND_DEPLOY_PATH }}
+            # Install production deps only
+            npm install --omit=dev
+            # Restart Passenger app
+            mkdir -p tmp && touch tmp/restart.txt
+            echo "✅ Backend deployed successfully"
+          EOF

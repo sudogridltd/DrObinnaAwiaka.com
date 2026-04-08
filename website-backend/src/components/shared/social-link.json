@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "link",
+    "description": "A social media platform link"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": ["instagram", "facebook", "twitter", "linkedin", "youtube", "tiktok", "website", "podcast"],
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}

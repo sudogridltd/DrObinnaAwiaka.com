@@ -1,0 +1,121 @@
+{
+    "kind": "collectionType",
+    "collectionName": "notification_queues",
+    "info": {
+        "singularName": "notification-queue",
+        "pluralName": "notification-queues",
+        "displayName": "Notification Queue",
+        "description": "Queue for managing notification delivery"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "subscriber": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::newsletter-subscriber.newsletter-subscriber",
+            "inversedBy": "notifications"
+        },
+        "email": {
+            "type": "email",
+            "required": true
+        },
+        "phone": {
+            "type": "string"
+        },
+        "notificationType": {
+            "type": "enumeration",
+            "enum": [
+                "new-post",
+                "new-service",
+                "welcome",
+                "booking",
+                "order",
+                "contact",
+                "custom"
+            ],
+            "required": true
+        },
+        "channel": {
+            "type": "enumeration",
+            "enum": [
+                "email",
+                "sms",
+                "both"
+            ],
+            "default": "email"
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "pending",
+                "processing",
+                "sent",
+                "failed",
+                "cancelled"
+            ],
+            "default": "pending"
+        },
+        "priority": {
+            "type": "enumeration",
+            "enum": [
+                "low",
+                "normal",
+                "high",
+                "urgent"
+            ],
+            "default": "normal"
+        },
+        "scheduledAt": {
+            "type": "datetime",
+            "description": "When to send the notification"
+        },
+        "sentAt": {
+            "type": "datetime"
+        },
+        "emailTemplate": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::email-template.email-template"
+        },
+        "emailLog": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::email-log.email-log"
+        },
+        "smsLog": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::sms-log.sms-log"
+        },
+        "templateData": {
+            "type": "json",
+            "description": "Data to populate template variables"
+        },
+        "relatedEntityId": {
+            "type": "string",
+            "description": "ID of related entity (post, service, etc.)"
+        },
+        "relatedEntityType": {
+            "type": "string",
+            "description": "Type of related entity (blog-post, service, etc.)"
+        },
+        "retryCount": {
+            "type": "integer",
+            "default": 0
+        },
+        "maxRetries": {
+            "type": "integer",
+            "default": 3
+        },
+        "errorMessage": {
+            "type": "text"
+        },
+        "metadata": {
+            "type": "json",
+            "description": "Additional metadata"
+        }
+    }
+}

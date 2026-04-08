@@ -1,0 +1,1555 @@
+{
+  "global": {
+    "siteName": "Dr Obinna Awiaka",
+    "siteTagline": "Life Coach, Speaker & Author",
+    "email": "hello@drobinnaawiaka.com",
+    "phone": "(123) 456-7890",
+    "address": "Worldwide — Virtual & In-Person",
+    "footerTagline": "Empowering people to live with purpose and passion. Expert coaching, transformative workshops, and proven frameworks designed to help you break through barriers.",
+    "copyrightText": "© 2024 Dr Obinna Awiaka. All rights reserved.",
+    "announcementBarEnabled": false,
+    "announcementBar": "",
+    "socialLinks": [
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/drobinna/"
+      },
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/drobinna/"
+      },
+      {
+        "platform": "twitter",
+        "url": "https://x.com/drobinna"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://www.linkedin.com/in/drobinna/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/@drobinna"
+      }
+    ],
+    "headerNavigation": [
+      {
+        "label": "Home",
+        "url": "/",
+        "isExternal": false
+      },
+      {
+        "label": "About",
+        "url": "/about",
+        "isExternal": false
+      },
+      {
+        "label": "Services",
+        "url": "/services",
+        "isExternal": false
+      },
+      {
+        "label": "Shop",
+        "url": "/shop",
+        "isExternal": false
+      },
+      {
+        "label": "Contact",
+        "url": "/contact",
+        "isExternal": false
+      }
+    ],
+    "footerNavigation": [
+      {
+        "label": "Home",
+        "url": "/",
+        "isExternal": false
+      },
+      {
+        "label": "About",
+        "url": "/about",
+        "isExternal": false
+      },
+      {
+        "label": "Services",
+        "url": "/services",
+        "isExternal": false
+      },
+      {
+        "label": "Shop",
+        "url": "/shop",
+        "isExternal": false
+      },
+      {
+        "label": "Contact",
+        "url": "/contact",
+        "isExternal": false
+      },
+      {
+        "label": "Booking",
+        "url": "/booking",
+        "isExternal": false
+      }
+    ]
+  },
+  "homepage": {
+    "hero": {
+      "title": "Transform Your Life, Unlock Your Full Potential",
+      "subtitle": "Expert coaching, transformative workshops, and proven frameworks designed to help you break through barriers, find clarity, and create the life you truly deserve.",
+      "buttons": [
+        {
+          "text": "Book a Free Discovery Call",
+          "url": "/booking",
+          "variant": "primary",
+          "isExternal": false
+        },
+        {
+          "text": "Explore Services",
+          "url": "/services",
+          "variant": "outline",
+          "isExternal": false
+        }
+      ]
+    },
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Lives Transformed"
+      },
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "50+",
+        "label": "Corporate Clients"
+      },
+      {
+        "value": "10K+",
+        "label": "Community Members"
+      }
+    ],
+    "whyChooseUsTitle": "Guided by Purpose, Driven by Results",
+    "whyChooseUsSubtitle": "Discover what makes our coaching approach uniquely effective.",
+    "whyChooseUsFeatures": [
+      {
+        "icon": "Heart",
+        "title": "Compassionate Approach",
+        "description": "A safe, judgment-free space where you can explore your thoughts, feelings, and aspirations with genuine support and empathy."
+      },
+      {
+        "icon": "Target",
+        "title": "Goal-Oriented Results",
+        "description": "Structured coaching frameworks that turn your vision into actionable steps, measurable milestones, and lasting transformation."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "Proven Methodologies",
+        "description": "Evidence-based techniques drawn from positive psychology, NLP, and cognitive behavioral coaching — refined over 15+ years."
+      },
+      {
+        "icon": "Shield",
+        "title": "Confidential & Private",
+        "description": "Complete confidentiality for executives, entrepreneurs, and public figures. Your journey is personal — and protected."
+      }
+    ],
+    "assuranceTitle": "Stop Settling for Less. Start Living With Purpose",
+    "assuranceSubtitle": "Your Transformation Starts Here",
+    "assuranceDescription": "Whether you're navigating a career transition, seeking personal growth, or building stronger relationships — Dr Obinna Awiaka's coaching gives you the clarity, confidence, and accountability to make lasting change.",
+    "assuranceFeatures": [
+      {
+        "title": "Personalized 1-on-1 coaching sessions"
+      },
+      {
+        "title": "Actionable strategies tailored to your goals"
+      },
+      {
+        "title": "Ongoing accountability & support"
+      },
+      {
+        "title": "Access to exclusive resources & community"
+      }
+    ],
+    "servicesShowcaseTitle": "Tailored Programs for Every Stage of Growth",
+    "servicesShowcaseSubtitle": "Whether you're an individual seeking personal breakthroughs or an organization investing in your people — we have a program for you.",
+    "testimonialsTitle": "What Our Clients Say",
+    "testimonialsSubtitle": "Real stories from real people who chose to invest in themselves and experienced transformational results.",
+    "newsletterTitle": "Get Weekly Inspiration",
+    "newsletterSubtitle": "Join 10,000+ subscribers who receive weekly coaching insights, motivation, and exclusive resources to help you grow and thrive.",
+    "newsletterButtonText": "Subscribe"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Empowering People to Live With Purpose & Passion",
+      "subtitle": "Dr Obinna Awiaka is a certified life coach, international speaker, and bestselling author with over 15 years of experience helping individuals and organizations unlock their full potential.",
+      "buttons": [
+        {
+          "text": "Work With Me",
+          "url": "/booking",
+          "variant": "primary",
+          "isExternal": false
+        }
+      ]
+    },
+    "bio": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "My journey into coaching began after a successful 10-year career in corporate leadership. Despite external success, I felt a deep calling to help others navigate the same challenges I had overcome — burnout, imposter syndrome, and the struggle to find authentic purpose."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "I invested years in rigorous training, earning certifications from the International Coach Federation and mastering techniques in NLP, positive psychology, and transformational leadership."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "Today, I serve clients across 15+ countries, helping them move from surviving to thriving. My books, workshops, and online courses have reached thousands of people worldwide."
+          }
+        ]
+      }
+    ],
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Lives Transformed"
+      },
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "50+",
+        "label": "Corporate Clients"
+      },
+      {
+        "value": "3",
+        "label": "Published Books"
+      }
+    ],
+    "credentialsTitle": "Certifications & Training",
+    "credentials": [
+      {
+        "text": "ICF Professional Certified Coach (PCC)"
+      },
+      {
+        "text": "Certified NLP Practitioner"
+      },
+      {
+        "text": "DISC Assessment Certified"
+      },
+      {
+        "text": "Mental Health First Aid Certified"
+      },
+      {
+        "text": "Positive Psychology Certification"
+      },
+      {
+        "text": "Executive Leadership Coach"
+      }
+    ],
+    "ctaTitle": "Ready to Start Your Transformation?",
+    "ctaDescription": "Book a free discovery call and let's explore how coaching can help you achieve your most important goals.",
+    "ctaButtons": [
+      {
+        "text": "Book Your Free Discovery Call",
+        "url": "/booking",
+        "variant": "primary",
+        "isExternal": false
+      }
+    ]
+  },
+  "servicesPage": {
+    "hero": {
+      "title": "Services Designed for Your Growth",
+      "subtitle": "From personal breakthroughs to organizational transformation, find the right coaching program to accelerate your journey.",
+      "buttons": [
+        {
+          "text": "Book a Free Discovery Call",
+          "url": "/booking",
+          "variant": "primary",
+          "isExternal": false
+        }
+      ]
+    },
+    "introTitle": "Coaching Services",
+    "introText": "From personal breakthroughs to organizational transformation, find the right coaching program to accelerate your journey.",
+    "processTitle": "The Coaching Process",
+    "processSteps": [
+      {
+        "icon": "CheckCircle",
+        "title": "Free Discovery Call",
+        "description": "We start with a complimentary 30-minute call to understand your goals, challenges, and whether we're the right fit for each other."
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "Personalized Plan",
+        "description": "Based on our conversation, I create a customized coaching plan with clear objectives, timelines, and measurable outcomes."
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "Coaching Sessions",
+        "description": "Regular sessions where we dive deep, challenge assumptions, build new habits, and track progress toward your goals."
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "Ongoing Growth",
+        "description": "Between sessions, you'll have tools, exercises, and support to maintain momentum and integrate changes into daily life."
+      }
+    ],
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Is coaching right for me?",
+        "answer": "If you're feeling stuck, seeking clarity, or ready to level up in any area of life — coaching can help."
+      },
+      {
+        "question": "How do virtual sessions work?",
+        "answer": "Sessions are conducted via Zoom. You'll receive a private link before each session."
+      },
+      {
+        "question": "What's the investment?",
+        "answer": "Visit our Services page for detailed pricing. A free discovery call is always the best place to start."
+      }
+    ],
+    "ctaTitle": "Ready to Start Your Transformation?",
+    "ctaDescription": "Book a free discovery call and let's explore how coaching can help you achieve your most important goals.",
+    "ctaButtons": [
+      {
+        "text": "Book Your Free Discovery Call",
+        "url": "/booking",
+        "variant": "primary",
+        "isExternal": false
+      }
+    ]
+  },
+  "contactPage": {
+    "hero": {
+      "title": "Let's Start Your Journey",
+      "subtitle": "Whether you're ready to begin coaching, have questions about programs, or want to explore a partnership — I'd love to hear from you.",
+      "buttons": []
+    },
+    "officeTitle": "Get In Touch",
+    "officeAddress": "Worldwide — Virtual & In-Person\nSessions available globally",
+    "officePhone": "(123) 456-7890",
+    "officeEmail": "hello@drobinnaawiaka.com",
+    "officeHours": "Mon–Fri: 9AM – 6PM\nSat: By appointment",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form below and I'll personally get back to you within 24 hours.",
+    "inquiryTopics": [
+      {
+        "text": "1-on-1 Coaching Inquiry"
+      },
+      {
+        "text": "Executive Coaching"
+      },
+      {
+        "text": "Group Program / Workshop"
+      },
+      {
+        "text": "Speaking Engagement"
+      },
+      {
+        "text": "Course / Resource Question"
+      },
+      {
+        "text": "Partnership / Collaboration"
+      },
+      {
+        "text": "Media / Press Inquiry"
+      },
+      {
+        "text": "General Question"
+      }
+    ]
+  },
+  "bookingPage": {
+    "hero": {
+      "title": "Schedule Your Coaching Session",
+      "subtitle": "Choose your session type, pick a date and time, and take the first step toward meaningful transformation.",
+      "buttons": []
+    },
+    "introText": "Choose your session type, pick a date and time, and take the first step toward meaningful transformation.",
+    "availableTimeSlots": [
+      {
+        "text": "9:00 AM"
+      },
+      {
+        "text": "10:00 AM"
+      },
+      {
+        "text": "11:00 AM"
+      },
+      {
+        "text": "1:00 PM"
+      },
+      {
+        "text": "2:00 PM"
+      },
+      {
+        "text": "3:00 PM"
+      },
+      {
+        "text": "4:00 PM"
+      },
+      {
+        "text": "5:00 PM"
+      }
+    ],
+    "disabledDays": [
+      {
+        "day": "Sunday"
+      }
+    ],
+    "confirmationTitle": "Booking Request Submitted!",
+    "confirmationMessage": "Thank you for scheduling a session. You'll receive a confirmation email within 24 hours with your session details and a calendar invite."
+  },
+  "services": [
+    {
+      "title": "1-on-1 Life Coaching",
+      "slug": "1-on-1-life-coaching",
+      "category": "life-coaching",
+      "shortDescription": "Deep, personalized coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Deep, personalized coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "60-minute sessions (virtual or in-person)"
+        },
+        {
+          "text": "Personalized goal-setting framework"
+        },
+        {
+          "text": "Between-session accountability"
+        },
+        {
+          "text": "Access to exclusive resources"
+        },
+        {
+          "text": "Email support between sessions"
+        }
+      ],
+      "price": 150,
+      "priceLabel": "From $150/session",
+      "duration": "60 minutes",
+      "isFeatured": true,
+      "order": 1,
+      "icon": "Users",
+      "sessionType": "life-coaching"
+    },
+    {
+      "title": "Executive & Leadership Coaching",
+      "slug": "executive-leadership-coaching",
+      "category": "executive-coaching",
+      "shortDescription": "Elevate your leadership presence, strategic thinking, and team performance with coaching designed for C-suite executives and rising leaders.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Elevate your leadership presence, strategic thinking, and team performance with coaching designed for C-suite executives and rising leaders."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "90-minute deep-dive sessions"
+        },
+        {
+          "text": "360-degree leadership assessment"
+        },
+        {
+          "text": "Stakeholder interview & analysis"
+        },
+        {
+          "text": "Custom leadership development plan"
+        },
+        {
+          "text": "Priority scheduling & support"
+        }
+      ],
+      "price": 300,
+      "priceLabel": "From $300/session",
+      "duration": "90 minutes",
+      "isFeatured": true,
+      "order": 2,
+      "icon": "Briefcase",
+      "sessionType": "executive"
+    },
+    {
+      "title": "Group Coaching Programs",
+      "slug": "group-coaching-programs",
+      "category": "group-coaching",
+      "shortDescription": "Small-group experiences (6-12 people) that foster accountability, shared learning, and collective breakthroughs through structured modules.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Small-group experiences (6-12 people) that foster accountability, shared learning, and collective breakthroughs through structured modules."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "12-week structured program"
+        },
+        {
+          "text": "Weekly 90-minute group sessions"
+        },
+        {
+          "text": "Private community access"
+        },
+        {
+          "text": "Peer accountability partners"
+        },
+        {
+          "text": "Program workbook included"
+        }
+      ],
+      "price": 75,
+      "priceLabel": "From $75/person/session",
+      "duration": "90 minutes",
+      "isFeatured": false,
+      "order": 3,
+      "icon": "GraduationCap",
+      "sessionType": "group"
+    },
+    {
+      "title": "Relationship & Couples Coaching",
+      "slug": "relationship-couples-coaching",
+      "category": "relationship-coaching",
+      "shortDescription": "Strengthen your relationships with coaching that addresses communication, conflict resolution, intimacy, and shared life vision.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Strengthen your relationships with coaching that addresses communication, conflict resolution, intimacy, and shared life vision."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "75-minute couple sessions"
+        },
+        {
+          "text": "Communication style assessment"
+        },
+        {
+          "text": "Conflict resolution frameworks"
+        },
+        {
+          "text": "Shared vision planning"
+        },
+        {
+          "text": "Individual follow-up sessions"
+        }
+      ],
+      "price": 200,
+      "priceLabel": "From $200/session",
+      "duration": "75 minutes",
+      "isFeatured": false,
+      "order": 4,
+      "icon": "Heart",
+      "sessionType": "couples"
+    },
+    {
+      "title": "Speaking & Workshops",
+      "slug": "speaking-workshops",
+      "category": "speaking",
+      "shortDescription": "Invite Dr Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Invite Dr Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "Keynote speeches (45-90 min)"
+        },
+        {
+          "text": "Half-day & full-day workshops"
+        },
+        {
+          "text": "Corporate retreat facilitation"
+        },
+        {
+          "text": "Virtual & in-person options"
+        },
+        {
+          "text": "Custom content for your audience"
+        }
+      ],
+      "price": null,
+      "priceLabel": "Custom Pricing",
+      "duration": "Varies",
+      "isFeatured": false,
+      "order": 5,
+      "icon": "Mic",
+      "sessionType": "speaking"
+    },
+    {
+      "title": "Online Courses & Resources",
+      "slug": "online-courses-resources",
+      "category": "online-course",
+      "shortDescription": "Self-paced digital courses, workbooks, and guided programs for those who want to start their transformation journey on their own schedule.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Self-paced digital courses, workbooks, and guided programs for those who want to start their transformation journey on their own schedule."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "Video-based learning modules"
+        },
+        {
+          "text": "Downloadable workbooks & tools"
+        },
+        {
+          "text": "Lifetime access to content"
+        },
+        {
+          "text": "Community forum access"
+        },
+        {
+          "text": "Certificate of completion"
+        }
+      ],
+      "price": 29,
+      "priceLabel": "From $29",
+      "duration": "Self-paced",
+      "isFeatured": false,
+      "order": 6,
+      "icon": "BookOpen",
+      "sessionType": "course"
+    }
+  ],
+  "products": [
+    {
+      "title": "Purpose Mastery Program",
+      "slug": "purpose-mastery",
+      "category": "course",
+      "shortDescription": "A comprehensive 8-week online program to discover your life purpose, align your values, and create a compelling vision for your future.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A comprehensive 8-week online program to discover your life purpose, align your values, and create a compelling vision for your future."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "40+ video lessons"
+        },
+        {
+          "text": "Interactive workbook"
+        },
+        {
+          "text": "Weekly live Q&A calls"
+        },
+        {
+          "text": "Private community access"
+        },
+        {
+          "text": "Certificate of completion"
+        },
+        {
+          "text": "Lifetime access"
+        }
+      ],
+      "price": 197,
+      "originalPrice": 297,
+      "badge": "Bestseller",
+      "isFeatured": true,
+      "rating": 4.9,
+      "studentsCount": 1200
+    },
+    {
+      "title": "The Leadership Blueprint",
+      "slug": "leadership-blueprint",
+      "category": "course",
+      "shortDescription": "Master the art of authentic leadership with this intensive course covering emotional intelligence, strategic thinking, and team dynamics.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Master the art of authentic leadership with this intensive course covering emotional intelligence, strategic thinking, and team dynamics."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "30+ video modules"
+        },
+        {
+          "text": "Leadership assessment tool"
+        },
+        {
+          "text": "Case study library"
+        },
+        {
+          "text": "Peer networking group"
+        },
+        {
+          "text": "Monthly masterclass access"
+        },
+        {
+          "text": "Lifetime access"
+        }
+      ],
+      "price": 249,
+      "originalPrice": 349,
+      "badge": "New",
+      "isFeatured": true,
+      "rating": 4.8,
+      "studentsCount": 850
+    },
+    {
+      "title": "The Breakthrough Journal",
+      "slug": "breakthrough-journal",
+      "category": "ebook",
+      "shortDescription": "A beautifully designed 90-day guided journal with daily prompts, reflection exercises, and goal-tracking tools for personal transformation.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A beautifully designed 90-day guided journal with daily prompts, reflection exercises, and goal-tracking tools for personal transformation."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "90 daily guided prompts"
+        },
+        {
+          "text": "Weekly reflection exercises"
+        },
+        {
+          "text": "Goal-setting worksheets"
+        },
+        {
+          "text": "Printable PDF format"
+        },
+        {
+          "text": "Bonus: meditation scripts"
+        }
+      ],
+      "price": 29,
+      "isFeatured": false,
+      "rating": 4.7,
+      "studentsCount": 3500
+    },
+    {
+      "title": "Mindset Reset Toolkit",
+      "slug": "mindset-reset",
+      "category": "resource",
+      "shortDescription": "A collection of powerful tools, templates, and guided exercises to reprogram limiting beliefs and build an unshakeable growth mindset.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A collection of powerful tools, templates, and guided exercises to reprogram limiting beliefs and build an unshakeable growth mindset."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "Belief audit worksheet"
+        },
+        {
+          "text": "Affirmation builder"
+        },
+        {
+          "text": "Habit tracker templates"
+        },
+        {
+          "text": "Guided visualization audio"
+        },
+        {
+          "text": "Progress assessment tool"
+        }
+      ],
+      "price": 49,
+      "originalPrice": 79,
+      "isFeatured": false,
+      "rating": 4.6,
+      "studentsCount": 2100
+    },
+    {
+      "title": "Complete Transformation Bundle",
+      "slug": "complete-transformation",
+      "category": "bundle",
+      "shortDescription": "Get everything! All courses, ebooks, and resources in one comprehensive bundle at a massive discount. Your complete toolkit for life transformation.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Get everything! All courses, ebooks, and resources in one comprehensive bundle at a massive discount. Your complete toolkit for life transformation."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "All online courses included"
+        },
+        {
+          "text": "All ebooks & journals"
+        },
+        {
+          "text": "All resource toolkits"
+        },
+        {
+          "text": "Priority support"
+        },
+        {
+          "text": "3 bonus 1-on-1 coaching sessions"
+        },
+        {
+          "text": "Exclusive VIP community"
+        }
+      ],
+      "price": 397,
+      "originalPrice": 597,
+      "badge": "Best Value",
+      "isFeatured": true,
+      "rating": 5.0,
+      "studentsCount": 450
+    },
+    {
+      "title": "Guided Meditation Series",
+      "slug": "guided-meditation",
+      "category": "resource",
+      "shortDescription": "10 professionally recorded guided meditations for stress relief, clarity, confidence building, and deep relaxation. Perfect for daily practice.",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "10 professionally recorded guided meditations for stress relief, clarity, confidence building, and deep relaxation. Perfect for daily practice."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "text": "10 guided meditations"
+        },
+        {
+          "text": "5-20 min per session"
+        },
+        {
+          "text": "High-quality audio"
+        },
+        {
+          "text": "Downloadable MP3s"
+        },
+        {
+          "text": "Meditation guide PDF"
+        }
+      ],
+      "price": 39,
+      "isFeatured": false,
+      "rating": 4.8,
+      "studentsCount": 1800
+    }
+  ],
+  "blogCategories": [
+    {
+      "name": "Personal Growth",
+      "slug": "personal-growth",
+      "description": "Insights and strategies for personal development and self-improvement"
+    },
+    {
+      "name": "Leadership",
+      "slug": "leadership",
+      "description": "Tips and frameworks for developing leadership skills and leading with impact"
+    },
+    {
+      "name": "Mindset",
+      "slug": "mindset",
+      "description": "Transform your mindset and unlock your full potential"
+    },
+    {
+      "name": "Relationships",
+      "slug": "relationships",
+      "description": "Build stronger, healthier relationships in your personal and professional life"
+    }
+  ],
+  "blogPosts": [
+    {
+      "title": "5 Habits That Are Holding You Back from Success",
+      "slug": "5-habits-holding-you-back",
+      "excerpt": "Discover the common habits that silently sabotage your success and learn how to replace them with powerful routines that drive results.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Success isn't about doing more—it's about doing things differently. After working with hundreds of clients over the past 15 years, I've identified five habits that consistently hold people back from reaching their full potential.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "1. Procrastination as a Default Mode",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "We often wait for motivation to strike before taking action. But motivation is a result of action, not the other way around. Start with just five minutes of work on any task, and watch how momentum builds.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "2. Perfectionism as an Excuse",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Perfectionism is really fear in disguise—fear of failure, fear of judgment, fear of not being enough. The key is to shift from 'perfect' to 'progress.' Small, imperfect action beats perfect inaction every time.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "3. Comparing Yourself to Others",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Social media has made comparison easier than ever, but it's also the fastest way to dissatisfaction. Your journey is unique—focus on your own progress, not someone else's highlight reel.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "4. Ignoring Self-Care",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Burnout isn't a badge of honor—it's a warning sign. Prioritize sleep, exercise, and downtime. You can't pour from an empty cup.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "5. Fear of Asking for Help",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Asking for help isn't weakness—it's wisdom. The most successful people surround themselves with mentors, coaches, and supportive communities. You don't have to figure it all out alone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "The journey to success is a marathon, not a sprint. By becoming aware of these habits and making conscious choices to change them, you unlock your potential for extraordinary results.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": true,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 8,
+      "tags": [
+        {
+          "text": "Personal Development"
+        },
+        {
+          "text": "Success Habits"
+        },
+        {
+          "text": "Self-Improvement"
+        }
+      ]
+    },
+    {
+      "title": "The Power of Emotional Intelligence in Leadership",
+      "slug": "emotional-intelligence-leadership",
+      "excerpt": "Why EQ matters more than IQ in today's workplace and how you can develop it to become a more effective leader.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Technical skills will only take you so far. In my executive coaching practice, I've seen brilliant professionals struggle not because they lack knowledge, but because they lack emotional intelligence.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "What is Emotional Intelligence?",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Emotional intelligence (EQ) is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others, and defuse conflict.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Why EQ Matters in Leadership",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Studies show that EQ accounts for nearly 90% of what distinguishes top performers from others. Leaders with high emotional intelligence create more engaged teams, make better decisions, and navigate workplace challenges with grace.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Developing Your EQ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "The good news? Emotional intelligence can be developed. Start by practicing self-awareness—pause before reacting, name your emotions, and understand their source. Then work on empathy—truly listening to others without judgment.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Remember: leadership isn't about being the smartest person in the room. It's about creating an environment where everyone can do their best work.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": true,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 6,
+      "tags": [
+        {
+          "text": "Leadership"
+        },
+        {
+          "text": "Emotional Intelligence"
+        },
+        {
+          "text": "Executive Coaching"
+        }
+      ]
+    },
+    {
+      "title": "How to Navigate a Major Career Transition",
+      "slug": "navigate-career-transition",
+      "excerpt": "Career changes can be scary, but they can also be the most transformative decisions you ever make. Here's how to navigate them with confidence.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Whether you're feeling stuck in your current role, pivoting to a new industry, or starting your own business, a career transition is both exciting and terrifying. I've helped hundreds of professionals navigate this journey—here's what works.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Get Clear on Your 'Why'",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Before making any move, ask yourself: Why am I making this change? Is it pull (exciting new opportunity) or push (fleeing something uncomfortable)? The best transitions are driven by pull, not push.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Map Out Your Skills",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "You have more transferable skills than you think. Make a list of everything you've done—then identify which skills are core to who you are versus tied to a specific job title. Your core skills can apply to many roles.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Build Your Support System",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Don't navigate this alone. Find mentors who've been where you want to go, connect with others going through similar transitions, and consider working with a coach who can help you stay focused and accountable.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "The biggest risk isn't failing—it's staying somewhere that limits your growth. Trust yourself, take the leap, and remember: every transition is an opportunity to become more of who you're meant to be.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": true,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 7,
+      "tags": [
+        {
+          "text": "Career"
+        },
+        {
+          "text": "Life Transitions"
+        },
+        {
+          "text": "Professional Development"
+        }
+      ]
+    },
+    {
+      "title": "Building Unshakeable Confidence: A Step-by-Step Guide",
+      "slug": "building-unshakeable-confidence",
+      "excerpt": "Confidence isn't something you're born with—it's built through practice. Learn the exact strategies to develop genuine, lasting confidence.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Confidence is one of the most sought-after qualities, yet many people struggle with it. The truth is, confidence is a skill—one that can be developed with intentional practice.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Challenge Your Inner Critic",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "That voice in your head that says you're not good enough? It's not facts—it's fear dressed up as logic. Start questioning these thoughts: Is this true? Would I say this to a friend? What would I say instead?",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Celebrate Small Wins",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Big confidence comes from accumulating small victories. Keep a 'win journal' where you record every success—no matter how small. Over time, you'll have a catalog of evidence that proves you're capable.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Practice Bravery Daily",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Confidence is a muscle—the more you use it, the stronger it gets. Start with small acts of bravery: speak up in a meeting, try a new class, have a difficult conversation. Each act builds your confidence 'muscle.'",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Remember: confidence isn't about being perfect or never feeling afraid. It's about acting despite the fear, knowing you have what it takes to handle whatever comes your way.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": false,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 5,
+      "tags": [
+        {
+          "text": "Confidence"
+        },
+        {
+          "text": "Mindset"
+        },
+        {
+          "text": "Personal Growth"
+        }
+      ]
+    },
+    {
+      "title": "The Art of Setting Boundaries Without Guilt",
+      "slug": "setting-boundaries-without-guilt",
+      "excerpt": "Learning to say no is one of the most powerful things you can do for your mental health and personal growth.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Many of us struggle with boundaries—we feel guilty saying no, worried we'll let people down or be seen as selfish. But boundaries aren't selfish; they're necessary.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Why Boundaries Matter",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Without boundaries, we overextend ourselves, neglect our needs, and eventually burn out. Boundaries protect our energy, time, and well-being—so we can show up fully for the things that matter.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Overcoming the Guilt",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Guilt often comes from believing we owe everyone everything. Remind yourself: saying no to something means saying yes to something else—often yourself, your health, or your priorities.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "How to Set Boundaries",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Start small: identify one area where you need to set a boundary. Be clear and direct—'I won't be available on weekends' is better than a vague maybe. And remember: you don't need to over-explain or justify yourself.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "The people who truly care about you will respect your boundaries. Those who don't? They're not entitled to your time and energy anyway.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": false,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 6,
+      "tags": [
+        {
+          "text": "Boundaries"
+        },
+        {
+          "text": "Mental Health"
+        },
+        {
+          "text": "Self-Care"
+        }
+      ]
+    },
+    {
+      "title": "Finding Your Purpose: A Journey, Not a Destination",
+      "slug": "finding-your-purpose",
+      "excerpt": "Purpose isn't something you find once and keep forever—it's something you continuously create through conscious choices and experiences.",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "The question 'What is my purpose?' haunts many of us. We search for one definitive answer, hoping to find it and have it figured out forever. But purpose isn't a destination—it's a journey.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Redefine Purpose",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Purpose isn't always a grand mission or a dramatic calling. Sometimes it's simpler: how you want to feel, the impact you want to have, or the person you want to become. Start there.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Pay Attention to What Lights You Up",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Your interests, natural talents, and the things that energize you are clues. What do you lose track of time doing? What do people always come to you for? These are breadcrumbs on your purpose path.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "text": "Create Through Action",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "You won't find your purpose by sitting and thinking. You find it by doing—trying new things, meeting new people, and being open to experiences. Each action reveals more about what matters to you.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "text": "Your purpose can evolve. The work that fulfills you at 25 might be different at 45—and that's perfectly okay. Embrace the journey of becoming.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "isFeatured": false,
+      "authorName": "Dr. Obinna Awiaka",
+      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "readingTimeMinutes": 7,
+      "tags": [
+        {
+          "text": "Purpose"
+        },
+        {
+          "text": "Meaning"
+        },
+        {
+          "text": "Life Design"
+        }
+      ]
+    }
+  ]
+}

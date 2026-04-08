@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "shop_pages",
+  "info": {
+    "singularName": "shop-page",
+    "pluralName": "shop-pages",
+    "displayName": "Shop Page",
+    "description": "Shop page header and intro content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "introTitle": {
+      "type": "string"
+    },
+    "introText": {
+      "type": "text"
+    },
+    "guaranteeTitle": {
+      "type": "string"
+    },
+    "guaranteeDescription": {
+      "type": "text"
+    },
+    "guaranteeImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

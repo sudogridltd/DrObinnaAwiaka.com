@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "services_pages",
+  "info": {
+    "singularName": "services-page",
+    "pluralName": "services-pages",
+    "displayName": "Services Page",
+    "description": "Services listing page header and intro content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "introTitle": {
+      "type": "string"
+    },
+    "introText": {
+      "type": "text"
+    },
+    "processTitle": {
+      "type": "string"
+    },
+    "processSteps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature"
+    },
+    "faqTitle": {
+      "type": "string"
+    },
+    "faqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.faq"
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "ctaDescription": {
+      "type": "text"
+    },
+    "ctaButtons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-button"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

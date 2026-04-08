@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "booking_pages",
+  "info": {
+    "singularName": "booking-page",
+    "pluralName": "booking-pages",
+    "displayName": "Booking Page",
+    "description": "Session booking page content and configuration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "introText": {
+      "type": "text"
+    },
+    "availableTimeSlots": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "disabledDays": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.disabled-day"
+    },
+    "confirmationTitle": {
+      "type": "string"
+    },
+    "confirmationMessage": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

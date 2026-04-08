@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_text_items",
+  "info": {
+    "displayName": "Text Item",
+    "icon": "quote",
+    "description": "A single text entry — used for features lists, tags, credentials, topics, time slots, etc."
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

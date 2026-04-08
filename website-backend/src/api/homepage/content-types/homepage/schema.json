@@ -1,0 +1,83 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": "Homepage content and sections"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.stat"
+    },
+    "whyChooseUsTitle": {
+      "type": "string"
+    },
+    "whyChooseUsSubtitle": {
+      "type": "text"
+    },
+    "whyChooseUsFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature"
+    },
+    "assuranceTitle": {
+      "type": "string"
+    },
+    "assuranceSubtitle": {
+      "type": "string"
+    },
+    "assuranceDescription": {
+      "type": "text"
+    },
+    "assuranceImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "assuranceFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature"
+    },
+    "servicesShowcaseTitle": {
+      "type": "string"
+    },
+    "servicesShowcaseSubtitle": {
+      "type": "text"
+    },
+    "testimonialsTitle": {
+      "type": "string"
+    },
+    "testimonialsSubtitle": {
+      "type": "text"
+    },
+    "newsletterTitle": {
+      "type": "string"
+    },
+    "newsletterSubtitle": {
+      "type": "text"
+    },
+    "newsletterButtonText": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

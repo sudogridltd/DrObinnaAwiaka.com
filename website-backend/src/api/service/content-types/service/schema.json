@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Coaching and consulting services offered by Dr. Obinna Awiaka"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "life-coaching",
+        "executive-coaching",
+        "group-coaching",
+        "relationship-coaching",
+        "speaking",
+        "workshop",
+        "online-course"
+      ],
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "priceLabel": {
+      "type": "string",
+      "description": "e.g. 'per session', 'per person/session', 'custom pricing'"
+    },
+    "duration": {
+      "type": "string",
+      "description": "e.g. '60 minutes', '90 minutes'"
+    },
+    "requiresDeposit": {
+      "type": "boolean",
+      "default": false,
+      "description": "If enabled, clients must pay a deposit to confirm their booking"
+    },
+    "depositAmount": {
+      "type": "decimal",
+      "description": "Deposit amount in your payment currency (only used when Requires Deposit is on)"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "icon": {
+      "type": "string",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "sessionType": {
+      "type": "string",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    }
+  }
+}

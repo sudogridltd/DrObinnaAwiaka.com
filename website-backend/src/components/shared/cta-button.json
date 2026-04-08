@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_cta_buttons",
+  "info": {
+    "displayName": "CTA Button",
+    "icon": "cursor",
+    "description": "A call-to-action button"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "outline", "ghost"],
+      "default": "primary"
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "displayName": "SEO",
+    "icon": "search",
+    "description": "SEO metadata for pages"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 60
+    },
+    "metaDescription": {
+      "type": "text",
+      "required": true,
+      "maxLength": 160
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "metaRobots": {
+      "type": "string",
+      "default": "index, follow"
+    },
+    "canonicalURL": {
+      "type": "string"
+    },
+    "structuredData": {
+      "type": "json"
+    },
+    "openGraphTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "openGraphDescription": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "openGraphImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "twitterCardType": {
+      "type": "enumeration",
+      "enum": ["summary", "summary_large_image", "app", "player"],
+      "default": "summary_large_image"
+    },
+    "twitterTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "twitterDescription": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "noIndex": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

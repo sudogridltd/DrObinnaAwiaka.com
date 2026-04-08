@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_awards",
+  "info": {
+    "displayName": "Award",
+    "icon": "trophy",
+    "description": "An award or recognition received"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "year": {
+      "type": "integer"
+    },
+    "issuer": {
+      "type": "string"
+    }
+  }
+}

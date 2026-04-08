@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <defs>
+    <radialGradient id="badge" cx="38%" cy="30%" r="72%">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0c6860"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Badge shadow -->
+  <circle cx="30" cy="31.5" r="26.5" fill="#084e49" opacity="0.3"/>
+
+  <!-- Badge circle -->
+  <circle cx="30" cy="30" r="27.5" fill="url(#badge)"/>
+  <circle cx="30" cy="30" r="23.5" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+
+  <!-- Gold top arch -->
+  <path d="M 19 17 Q 30 11.5 41 17" stroke="#fbbf24" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- "DO" monogram -->
+  <text
+    x="30" y="37"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="21"
+    font-weight="700"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-1.5"
+  >DO</text>
+
+  <!-- Gold bottom arch -->
+  <path d="M 20 46 Q 30 51 40 46" stroke="#fbbf24" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Thin separator -->
+  <rect x="65" y="13" width="0.8" height="34" rx="0.4" fill="rgba(255,255,255,0.12)"/>
+
+  <!-- Wordmark -->
+  <text
+    x="76" y="29"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="17"
+    font-weight="700"
+    fill="white"
+    letter-spacing="0.2"
+  >Dr Obinna Awiaka</text>
+
+  <!-- Tagline -->
+  <text
+    x="77" y="44"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="8"
+    font-weight="500"
+    fill="#94a3b8"
+    letter-spacing="3.5"
+  >LIFE COACH</text>
+</svg>

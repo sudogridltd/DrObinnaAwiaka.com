@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_media_features",
+  "info": {
+    "displayName": "Media Feature",
+    "icon": "television",
+    "description": "A press or media mention (podcast, article, interview, etc.)"
+  },
+  "options": {},
+  "attributes": {
+    "outlet": {
+      "type": "string",
+      "required": true,
+      "description": "e.g. 'Forbes', 'BBC', 'The Breakfast Club'"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Headline or episode title"
+    },
+    "url": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

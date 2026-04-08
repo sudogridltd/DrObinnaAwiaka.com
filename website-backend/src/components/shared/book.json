@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_books",
+  "info": {
+    "displayName": "Book",
+    "icon": "book",
+    "description": "A published book by Dr. Obinna Awiaka"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "purchaseUrl": {
+      "type": "string"
+    }
+  }
+}

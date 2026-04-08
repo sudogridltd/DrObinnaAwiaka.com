@@ -1,0 +1,140 @@
+{
+    "kind": "collectionType",
+    "collectionName": "email_logs",
+    "info": {
+        "singularName": "email-log",
+        "pluralName": "email-logs",
+        "displayName": "Email Log",
+        "description": "Log of all sent emails"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "recipientType": {
+            "type": "enumeration",
+            "enum": [
+                "all-subscribers",
+                "all-customers",
+                "individual",
+                "custom"
+            ],
+            "required": true,
+            "default": "individual",
+            "description": "Type of recipient selection"
+        },
+        "recipient": {
+            "type": "string",
+            "required": true,
+            "description": "Email address for individual recipient or custom email"
+        },
+        "recipients": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::customer.customer",
+            "inversedBy": "emailLogs"
+        },
+        "subscribers": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::newsletter-subscriber.newsletter-subscriber",
+            "inversedBy": "emailLogs"
+        },
+        "isBulkEmail": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if this is a bulk email sent to multiple recipients"
+        },
+        "recipientName": {
+            "type": "string"
+        },
+        "subject": {
+            "type": "string",
+            "required": true
+        },
+        "template": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::email-template.email-template",
+            "inversedBy": "emailLogs"
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "pending",
+                "sent",
+                "delivered",
+                "failed",
+                "bounced"
+            ],
+            "default": "pending"
+        },
+        "sentAt": {
+            "type": "datetime"
+        },
+        "deliveredAt": {
+            "type": "datetime"
+        },
+        "errorMessage": {
+            "type": "text"
+        },
+        "metadata": {
+            "type": "json",
+            "description": "Additional metadata like IP, user agent, etc."
+        },
+        "notificationType": {
+            "type": "enumeration",
+            "enum": [
+                "new-post",
+                "new-service",
+                "welcome",
+                "booking",
+                "order",
+                "contact",
+                "custom"
+            ],
+            "required": true
+        },
+        "relatedEntityId": {
+            "type": "string",
+            "description": "ID of related entity (post, service, etc.)"
+        },
+        "relatedEntityType": {
+            "type": "string",
+            "description": "Type of related entity (blog-post, service, etc.)"
+        },
+        "opens": {
+            "type": "integer",
+            "default": 0
+        },
+        "clicks": {
+            "type": "integer",
+            "default": 0
+        },
+        "lastOpenedAt": {
+            "type": "datetime",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        },
+        "createdAt": {
+            "type": "datetime",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        },
+        "updatedAt": {
+            "type": "datetime",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        }
+    }
+}

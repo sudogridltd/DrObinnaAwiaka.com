@@ -1,0 +1,128 @@
+{
+    "kind": "collectionType",
+    "collectionName": "sms_logs",
+    "info": {
+        "singularName": "sms-log",
+        "pluralName": "sms-logs",
+        "displayName": "SMS Log",
+        "description": "Log of all sent SMS messages (backup for important communications)"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "recipientType": {
+            "type": "enumeration",
+            "enum": [
+                "all-subscribers",
+                "all-customers",
+                "individual",
+                "custom"
+            ],
+            "required": true,
+            "default": "individual",
+            "description": "Type of recipient selection"
+        },
+        "recipient": {
+            "type": "string",
+            "required": true,
+            "description": "Phone number for individual recipient or custom phone"
+        },
+        "recipients": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::customer.customer",
+            "inversedBy": "smsLogs"
+        },
+        "subscribers": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::newsletter-subscriber.newsletter-subscriber",
+            "inversedBy": "smsLogs"
+        },
+        "isBulkSms": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if this is a bulk SMS sent to multiple recipients"
+        },
+        "recipientName": {
+            "type": "string"
+        },
+        "message": {
+            "type": "text",
+            "required": true
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "pending",
+                "sent",
+                "delivered",
+                "failed"
+            ],
+            "default": "pending"
+        },
+        "sentAt": {
+            "type": "datetime"
+        },
+        "deliveredAt": {
+            "type": "datetime"
+        },
+        "errorMessage": {
+            "type": "text"
+        },
+        "twilioSid": {
+            "type": "string",
+            "description": "Twilio message SID for tracking"
+        },
+        "notificationType": {
+            "type": "enumeration",
+            "enum": [
+                "urgent",
+                "important",
+                "reminder",
+                "verification"
+            ],
+            "required": true
+        },
+        "relatedEntityId": {
+            "type": "string",
+            "description": "ID of related entity"
+        },
+        "relatedEntityType": {
+            "type": "string",
+            "description": "Type of related entity"
+        },
+        "cost": {
+            "type": "decimal",
+            "description": "Cost of SMS in USD"
+        },
+        "segments": {
+            "type": "integer",
+            "default": 1,
+            "description": "Number of SMS segments",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        },
+        "createdAt": {
+            "type": "datetime",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        },
+        "updatedAt": {
+            "type": "datetime",
+            "pluginOptions": {
+                "content-manager": {
+                    "visible": false
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,126 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_subscribers",
+  "info": {
+    "singularName": "newsletter-subscriber",
+    "pluralName": "newsletter-subscribers",
+    "displayName": "Newsletter Subscriber",
+    "description": "Email newsletter subscribers"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number for SMS notifications (backup for important communications)"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "subscribed",
+        "unsubscribed",
+        "bounced"
+      ],
+      "default": "subscribed"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": [
+        "homepage",
+        "blog",
+        "shop",
+        "booking",
+        "contact",
+        "popup",
+        "other"
+      ],
+      "default": "homepage",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "notificationPreferences": {
+      "type": "json",
+      "default": {
+        "email": true,
+        "sms": false,
+        "newPosts": true,
+        "newServices": true,
+        "promotions": false,
+        "updates": true
+      },
+      "description": "Subscriber notification preferences"
+    },
+    "unsubscribedAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::notification-queue.notification-queue",
+      "mappedBy": "subscriber"
+    },
+    "emailLogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::email-log.email-log",
+      "mappedBy": "subscribers"
+    },
+    "smsLogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sms-log.sms-log",
+      "mappedBy": "subscribers"
+    },
+    "lastNotifiedAt": {
+      "type": "datetime",
+      "description": "Last time subscriber was notified"
+    },
+    "notificationCount": {
+      "type": "integer",
+      "default": 0,
+      "description": "Total number of notifications sent to this subscriber",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "createdAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    }
+  }
+}

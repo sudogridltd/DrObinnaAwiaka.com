@@ -1,0 +1,56 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page",
+    "description": "Contact page content and office information"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "officeTitle": {
+      "type": "string"
+    },
+    "officeAddress": {
+      "type": "text"
+    },
+    "officePhone": {
+      "type": "string"
+    },
+    "officeEmail": {
+      "type": "email"
+    },
+    "officeHours": {
+      "type": "text"
+    },
+    "mapEmbedUrl": {
+      "type": "string",
+      "description": "Google Maps or other map embed URL"
+    },
+    "formTitle": {
+      "type": "string"
+    },
+    "formSubtitle": {
+      "type": "text"
+    },
+    "inquiryTopics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

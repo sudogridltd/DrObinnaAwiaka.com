@@ -1,0 +1,105 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Deploy Frontend (Vike SSR) → cPanel shared hosting
+#
+# Required GitHub Secrets:
+#   CPANEL_HOST          – server hostname or IP  (e.g. server123.hostingprovider.com)
+#   CPANEL_PORT          – SSH port               (usually 22)
+#   CPANEL_USERNAME      – cPanel account username
+#   CPANEL_SSH_KEY       – SSH private key (Ed25519 or RSA, no passphrase)
+#   FRONTEND_DEPLOY_PATH – absolute path on server (e.g. /home/username/website)
+#   VITE_STRAPI_URL      – Strapi backend URL for SSR data fetching
+#   VITE_STRAPI_API_TOKEN – Strapi read-only API token
+#
+# cPanel Node.js Selector setup:
+#   - Application root:  /home/username/website
+#   - Application URL:   your-domain.com  (or subfolder)
+#   - Application startup file:  server.js
+#   - Node.js version:   22.x
+#   - Run: "npm install --omit=dev" in Node.js Selector before first run
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to cPanel
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: website
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: website/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Vike app + compile server
+        run: pnpm build:all
+        env:
+          NODE_ENV: production
+          VITE_STRAPI_URL: ${{ secrets.VITE_STRAPI_URL }}
+          VITE_STRAPI_API_TOKEN: ${{ secrets.VITE_STRAPI_API_TOKEN }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Sync build to server
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='tmp' \
+            --include='dist/' \
+            --include='dist/**' \
+            --include='public/' \
+            --include='public/**' \
+            --include='server.js' \
+            --include='package.json' \
+            --include='pnpm-lock.yaml' \
+            --exclude='*' \
+            ./ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
+
+      - name: Install production dependencies & restart app
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.CPANEL_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} << 'EOF'
+            set -e
+            cd ${{ secrets.FRONTEND_DEPLOY_PATH }}
+            # Install production deps only
+            npm install --omit=dev --ignore-scripts
+            # Restart Passenger app (cPanel standard mechanism)
+            mkdir -p tmp && touch tmp/restart.txt
+            echo "✅ Frontend deployed successfully"
+          EOF

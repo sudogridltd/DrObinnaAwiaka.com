@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Customer",
+    "description": "People who have booked, purchased, or enquired"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "customer"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking-submission.booking-submission",
+      "mappedBy": "customer"
+    },
+    "emailLogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::email-log.email-log",
+      "mappedBy": "recipients"
+    },
+    "smsLogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sms-log.sms-log",
+      "mappedBy": "recipients"
+    },
+    "isVIP": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Private admin notes about this customer"
+    },
+    "totalSpent": {
+      "type": "decimal",
+      "default": 0,
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "createdAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    }
+  }
+}

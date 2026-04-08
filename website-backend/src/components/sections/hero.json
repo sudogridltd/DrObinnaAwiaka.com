@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero Section",
+    "icon": "landscape",
+    "description": "Hero/banner section with title, subtitle and CTAs"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "highlightedText": {
+      "type": "string",
+      "description": "Part of the title to highlight with accent color"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-button"
+    }
+  }
+}

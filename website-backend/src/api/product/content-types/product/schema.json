@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": "Shop products: courses, ebooks, bundles, and resources"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["course", "ebook", "bundle", "resource"],
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "maxLength": 300
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "originalPrice": {
+      "type": "decimal",
+      "description": "Original price before discount — leave empty if not on sale"
+    },
+    "badge": {
+      "type": "string",
+      "description": "Optional label shown on the card e.g. 'Best Value', 'Bestseller', 'New'"
+    },
+    "purchaseUrl": {
+      "type": "string",
+      "description": "Link to the checkout page (Gumroad, Stripe, etc.)"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5,
+      "description": "Average rating shown on the product card (0–5)"
+    },
+    "studentsCount": {
+      "type": "integer",
+      "description": "Number of students or customers to display as social proof"
+    }
+  }
+}

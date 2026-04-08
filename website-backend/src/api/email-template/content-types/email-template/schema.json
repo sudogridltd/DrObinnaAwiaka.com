@@ -1,0 +1,105 @@
+{
+    "kind": "collectionType",
+    "collectionName": "email_templates",
+    "info": {
+        "singularName": "email-template",
+        "pluralName": "email-templates",
+        "displayName": "Email Template",
+        "description": "Email templates for various notifications"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": true
+        },
+        "subject": {
+            "type": "string",
+            "required": true
+        },
+        "htmlBody": {
+            "type": "richtext",
+            "required": true
+        },
+        "textBody": {
+            "type": "text"
+        },
+        "templateType": {
+            "type": "enumeration",
+            "enum": [
+                "new-post",
+                "new-service",
+                "welcome",
+                "booking-confirmation",
+                "order-confirmation",
+                "contact-response",
+                "custom"
+            ],
+            "required": true
+        },
+        "variables": {
+            "type": "json",
+            "description": "Available template variables as JSON array"
+        },
+        "isActive": {
+            "type": "boolean",
+            "default": true
+        },
+        "fromEmail": {
+            "type": "string",
+            "default": "noreply@example.com"
+        },
+        "fromName": {
+            "type": "string",
+            "default": "Dr Obinna Awiaka"
+        },
+        "replyTo": {
+            "type": "string"
+        },
+        "category": {
+            "type": "enumeration",
+            "enum": [
+                "notification",
+                "marketing",
+                "transactional",
+                "system"
+            ],
+            "default": "notification"
+        },
+        "priority": {
+            "type": "enumeration",
+            "enum": [
+                "low",
+                "normal",
+                "high",
+                "urgent"
+            ],
+            "default": "normal"
+        },
+        "description": {
+            "type": "text"
+        },
+        "thumbnail": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "emailLogs": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::email-log.email-log",
+            "mappedBy": "template"
+        }
+    }
+}

@@ -1,0 +1,84 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About Page",
+    "description": "About Dr. Obinna Awiaka page content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "bio": {
+      "type": "blocks",
+      "description": "Full biography (rich text)"
+    },
+    "profilePhoto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.stat"
+    },
+    "credentialsTitle": {
+      "type": "string"
+    },
+    "credentials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "booksTitle": {
+      "type": "string"
+    },
+    "books": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.book"
+    },
+    "awardsTitle": {
+      "type": "string"
+    },
+    "awards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.award"
+    },
+    "mediaFeaturesTitle": {
+      "type": "string"
+    },
+    "mediaFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-feature"
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "ctaDescription": {
+      "type": "text"
+    },
+    "ctaButtons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-button"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

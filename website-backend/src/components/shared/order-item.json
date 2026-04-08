@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_shared_order_items",
+  "info": {
+    "displayName": "Order Item",
+    "icon": "shoppingCart",
+    "description": "A snapshot of a product at the time of purchase"
+  },
+  "options": {},
+  "attributes": {
+    "productTitle": {
+      "type": "string",
+      "required": true
+    },
+    "productSlug": {
+      "type": "string"
+    },
+    "unitPrice": {
+      "type": "decimal",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "lineTotal": {
+      "type": "decimal",
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    }
+  }
+}
