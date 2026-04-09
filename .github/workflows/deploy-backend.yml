@@ -109,8 +109,12 @@ jobs:
         run: |
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
-            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} << 'EOF'
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << 'EOF'
             set -e
+            # Source cPanel Node.js virtual environment (created by Node.js Selector)
+            DEPLOY_REL="${{ secrets.BACKEND_DEPLOY_PATH }}"
+            DEPLOY_REL="${DEPLOY_REL#$HOME/}"
+            source "$HOME/nodevenv/$DEPLOY_REL/22/bin/activate"
             cd ${{ secrets.BACKEND_DEPLOY_PATH }}
             npm install --omit=dev
             # Passenger restarts on next request after seeing restart.txt is touched
