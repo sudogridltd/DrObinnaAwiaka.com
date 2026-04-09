@@ -48,12 +48,12 @@ jobs:
         run: |
           DEPLOY_ABS="${{ secrets.BACKEND_DEPLOY_PATH }}"
           DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
+          ACTIVATE="/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
-            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << SSHEOF >> $GITHUB_ENV
-          source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
-          printenv | grep -E '^(APP_KEYS|API_TOKEN_SALT|ADMIN_JWT_SECRET|TRANSFER_TOKEN_SALT|JWT_SECRET|NODE_ENV)='
-          SSHEOF
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} \
+            "[ -f '$ACTIVATE' ] && source '$ACTIVATE'; printenv | grep -E '^(APP_KEYS|API_TOKEN_SALT|ADMIN_JWT_SECRET|TRANSFER_TOKEN_SALT|JWT_SECRET|NODE_ENV)=' || true" \
+            >> $GITHUB_ENV
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

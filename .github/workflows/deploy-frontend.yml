@@ -49,12 +49,12 @@ jobs:
         run: |
           DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
           DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
+          ACTIVATE="/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
-            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << SSHEOF >> $GITHUB_ENV
-          source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
-          printenv | grep -E '^(VITE_|NODE_ENV)='
-          SSHEOF
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} \
+            "[ -f '$ACTIVATE' ] && source '$ACTIVATE'; printenv | grep -E '^(VITE_|NODE_ENV)=' || true" \
+            >> $GITHUB_ENV
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
