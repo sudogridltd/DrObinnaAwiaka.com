@@ -111,14 +111,16 @@ jobs:
             -o StrictHostKeyChecking=no \
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << 'EOF'
             set -e
-            # Source cPanel Node.js virtual environment (created by Node.js Selector)
-            # Strip /home/<username>/ prefix to get the relative path cPanel uses for nodevenv
             DEPLOY_ABS="${{ secrets.BACKEND_DEPLOY_PATH }}"
             DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
-            source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
-            cd "$DEPLOY_ABS"
-            npm install --omit=dev
+            # CloudLinux Node.js Selector manages node_modules via its own venv.
+            # Must use cloudlinux-selector to install deps — direct npm install is blocked.
+            /usr/bin/cloudlinux-selector install-modules \
+              --json \
+              --interpreter nodejs \
+              --user ${{ secrets.CPANEL_USERNAME }} \
+              --app-root "$DEPLOY_REL"
             # Passenger restarts on next request after seeing restart.txt is touched
-            mkdir -p tmp && touch tmp/restart.txt
+            mkdir -p "$DEPLOY_ABS/tmp" && touch "$DEPLOY_ABS/tmp/restart.txt"
             echo "✅ Backend deployed successfully"
           EOF
