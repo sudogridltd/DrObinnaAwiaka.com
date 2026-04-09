@@ -78,6 +78,7 @@ jobs:
             --exclude='.env' \
             --exclude='.env.*' \
             --exclude='node_modules' \
+            --filter='protect node_modules' \
             --exclude='.git' \
             --exclude='dist' \
             --exclude='tmp' \
