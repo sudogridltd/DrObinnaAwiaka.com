@@ -113,9 +113,15 @@ jobs:
             set -e
             DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
             DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
-            source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
-            cd "$DEPLOY_ABS"
-            npm install --omit=dev --ignore-scripts
-            mkdir -p tmp && touch tmp/restart.txt
+            # Use uapi — this is what cPanel "Run NPM Install" button calls internally.
+            # It handles CloudLinux's node_modules symlink requirement correctly.
+            uapi LangPHP php_get_vhosts 2>/dev/null || true
+            /usr/local/cpanel/bin/uapi --user=${{ secrets.CPANEL_USERNAME }} \
+              NodeJS install_dependencies \
+              app_root="$DEPLOY_REL" 2>/dev/null || \
+            # Fallback: source venv and run npm (works if uapi not available)
+            (source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate" && \
+              cd "$DEPLOY_ABS" && npm install --omit=dev --ignore-scripts)
+            mkdir -p "$DEPLOY_ABS/tmp" && touch "$DEPLOY_ABS/tmp/restart.txt"
             echo "✅ Frontend deployed successfully"
           EOF
