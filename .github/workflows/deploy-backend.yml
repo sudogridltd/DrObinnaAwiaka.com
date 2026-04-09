@@ -7,7 +7,6 @@
 #   CPANEL_USERNAME            – cPanel account username
 #   CPANEL_SSH_KEY             – SSH private key (passphrase-protected is fine)
 #   BACKEND_DEPLOY_PATH        – absolute path (/home/username/website-backend)
-#   BACKEND_DEPLOY_PATH_REL    – relative path from home for nodevenv (e.g. website-backend)
 #   STRAPI_APP_KEYS            – APP_KEYS value (needed at admin build time)
 #   STRAPI_API_TOKEN_SALT      – API_TOKEN_SALT value
 #   STRAPI_ADMIN_JWT_SECRET    – ADMIN_JWT_SECRET value
@@ -113,7 +112,7 @@ jobs:
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << 'EOF'
             set -e
             # Source cPanel Node.js virtual environment (created by Node.js Selector)
-            source "$HOME/nodevenv/${{ secrets.BACKEND_DEPLOY_PATH_REL }}/22/bin/activate"
+            source "$HOME/nodevenv/$(basename ${{ secrets.BACKEND_DEPLOY_PATH }})/22/bin/activate"
             cd ${{ secrets.BACKEND_DEPLOY_PATH }}
             npm install --omit=dev
             # Passenger restarts on next request after seeing restart.txt is touched
