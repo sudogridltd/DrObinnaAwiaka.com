@@ -103,6 +103,7 @@ jobs:
             --include='public/**' \
             --include='server.js' \
             --include='package.json' \
+            --include='vite.config.production.js' \
             --exclude='*' \
             website/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
 
@@ -122,6 +123,10 @@ jobs:
             source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
             cd "$DEPLOY_ABS"
             npm install --omit=dev --ignore-scripts
+            # Use the minimal production vite config so Vike doesn't load the
+            # full vite.config.ts (which imports devDeps not present in prod).
+            # vite.config.js is resolved before vite.config.ts by Vite.
+            cp vite.config.production.js vite.config.js
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Frontend deployed successfully"
           EOF
