@@ -1,25 +1,22 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Deploy Frontend (Vike SSR) → cPanel shared hosting
 #
-# Required GitHub Secrets:
-#   CPANEL_HOST              – server hostname or IP (e.g. server123.host.com)
-#   CPANEL_PORT              – SSH port (usually 22)
-#   CPANEL_USERNAME          – cPanel account username
-#   CPANEL_SSH_KEY           – SSH private key (passphrase-protected is fine)
-#   FRONTEND_DEPLOY_PATH     – absolute path on server (/home/username/website)
-#   VITE_STRAPI_URL          – Strapi backend URL (baked into bundle at build time)
-#   VITE_STRAPI_API_TOKEN    – Strapi read-only API token (baked into bundle)
+# Required GitHub Secrets (SSH only — all app config lives in cPanel env vars):
+#   CPANEL_HOST          – server hostname or IP
+#   CPANEL_PORT          – SSH port (usually 22)
+#   CPANEL_USERNAME      – cPanel account username
+#   CPANEL_SSH_KEY       – SSH private key (no passphrase)
+#   FRONTEND_DEPLOY_PATH – absolute path on server (/home/username/...)
 #
-# NOTE: VITE_* vars are baked into the client/server bundle at build time by Vite.
-#       They do NOT need to be set in cPanel env vars — only set PORT and NODE_ENV
-#       in cPanel Node.js Selector → Environment Variables.
+# cPanel Node.js Selector → Environment Variables (set once on server):
+#   NODE_ENV=production
+#   VITE_STRAPI_URL=https://api.yourdomain.com
+#   VITE_STRAPI_API_TOKEN=your-token
+#   PORT=<assigned by cPanel automatically>
 #
 # cPanel Node.js Selector setup:
-#   - Application root:         /home/username/website
-#   - Application URL:          your-domain.com
 #   - Application startup file: server.js
 #   - Node.js version:          22.x
-#   - Environment Variables:    NODE_ENV=production  PORT=<assigned by cPanel>
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Deploy Frontend
@@ -33,52 +30,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy to cPanel
+  deploy:
+    name: Sync & Build on cPanel
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: website
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: echo "store=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.store }}
-          key: pnpm-store-${{ hashFiles('website/pnpm-lock.yaml') }}
-          restore-keys: pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Build Vike app + compile server
-        run: pnpm build:all
-        env:
-          NODE_ENV: production
-          VITE_STRAPI_URL: ${{ secrets.VITE_STRAPI_URL }}
-          VITE_STRAPI_API_TOKEN: ${{ secrets.VITE_STRAPI_API_TOKEN }}
-
-      # ssh-agent loads the key once (handles passphrase-protected keys).
-      # All subsequent ssh/rsync steps use the agent automatically — no -i flag needed.
       - name: Load SSH key into agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -89,9 +48,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      # Syncs only what's needed to run: compiled server, built client, package.json
-      # node_modules are installed fresh on the server so no large upload needed
-      - name: Sync build to server
+      - name: Sync source to server
         run: |
           rsync -az --delete \
             -e "ssh -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
@@ -99,32 +56,28 @@ jobs:
             --exclude='.env.*' \
             --exclude='node_modules' \
             --exclude='.git' \
+            --exclude='dist' \
             --exclude='tmp' \
-            --include='dist/' \
-            --include='dist/**' \
-            --include='public/' \
-            --include='public/**' \
-            --include='server.js' \
-            --include='package.json' \
-            --exclude='*' \
-            ./ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
+            website/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
 
-      # npm install on server installs only runtime deps (express, compression, vike).
-      # cPanel can also trigger this via "Run NPM Install" button — both work.
-      - name: Install production dependencies & restart app
+      - name: Install, build & restart on server
         run: |
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << 'EOF'
             set -e
-            # Source cPanel Node.js virtual environment (created by Node.js Selector)
-            # Strip /home/<username>/ prefix to get the relative path cPanel uses for nodevenv
             DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
             DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
+            # Source cPanel Node.js venv so node/npm/pnpm are on PATH
             source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
             cd "$DEPLOY_ABS"
-            npm install --omit=dev --ignore-scripts
-            # Passenger restarts on next request after seeing restart.txt is touched
+            # Install all deps (needed for build)
+            npm install
+            # Build — env vars come from cPanel Node.js Selector environment
+            npm run build:all
+            # Remove devDeps after build
+            npm prune --omit=dev
+            # Restart Passenger
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Frontend deployed successfully"
           EOF
