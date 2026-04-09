@@ -118,10 +118,11 @@ jobs:
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << 'EOF'
             set -e
             # Source cPanel Node.js virtual environment (created by Node.js Selector)
-            DEPLOY_REL="${{ secrets.FRONTEND_DEPLOY_PATH }}"
-            DEPLOY_REL="${DEPLOY_REL#$HOME/}"
-            source "$HOME/nodevenv/$DEPLOY_REL/22/bin/activate"
-            cd ${{ secrets.FRONTEND_DEPLOY_PATH }}
+            # Strip /home/<username>/ prefix to get the relative path cPanel uses for nodevenv
+            DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
+            DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
+            source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
+            cd "$DEPLOY_ABS"
             npm install --omit=dev --ignore-scripts
             # Passenger restarts on next request after seeing restart.txt is touched
             mkdir -p tmp && touch tmp/restart.txt
