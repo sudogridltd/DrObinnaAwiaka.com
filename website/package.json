@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build",
-    "build:server": "esbuild server.ts --platform=node --target=node22 --format=esm --outfile=server.js --external:express --external:compression --external:vike --external:vike-react --external:@vitejs/plugin-react --external:tailwindcss",
+    "build:server": "esbuild server.ts --bundle --platform=node --target=node22 --format=esm --outfile=server.js --external:express --external:compression --external:vike --external:vike-react --external:@vitejs/plugin-react --external:tailwindcss",
     "build:all": "pnpm build && pnpm build:server",
     "start": "NODE_ENV=production node server.js",
     "serve": "NODE_ENV=production tsx server.ts",
