@@ -1,28 +1,15 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Deploy Backend (Strapi v5) → cPanel shared hosting
 #
-# Required GitHub Secrets (SSH only — all app config lives in cPanel env vars):
+# Required GitHub Secrets (SSH only):
 #   CPANEL_HOST          – server hostname or IP
 #   CPANEL_PORT          – SSH port (usually 22)
 #   CPANEL_USERNAME      – cPanel account username
 #   CPANEL_SSH_KEY       – SSH private key (no passphrase)
-#   BACKEND_DEPLOY_PATH  – absolute path on server (/home/username/...)
+#   BACKEND_DEPLOY_PATH  – absolute path on server
 #
-# cPanel Node.js Selector → Environment Variables (set once on server):
-#   NODE_ENV=production
-#   HOST=0.0.0.0
-#   PORT=<assigned by cPanel automatically>
-#   DATABASE_CLIENT=sqlite
-#   DATABASE_FILENAME=.tmp/data.db
-#   APP_KEYS=...
-#   API_TOKEN_SALT=...
-#   ADMIN_JWT_SECRET=...
-#   TRANSFER_TOKEN_SALT=...
-#   JWT_SECRET=...
-#
-# cPanel Node.js Selector setup:
-#   - Application startup file: node_modules/.bin/strapi
-#   - Node.js version:          22.x
+# All app env vars (APP_KEYS, JWT_SECRET etc.) are read from cPanel
+# Node.js Selector at build time — not stored in GitHub.
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Deploy Backend
@@ -37,7 +24,7 @@ on:
 
 jobs:
   deploy:
-    name: Sync & Build on cPanel
+    name: Fetch env → Build → Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -54,7 +41,37 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      - name: Sync source to server
+      # SSH to server, source the cPanel Node.js venv, and export the env vars
+      # needed to build Strapi admin. Written into GITHUB_ENV so subsequent
+      # steps can use them — nothing is stored as a GitHub Secret.
+      - name: Fetch build env vars from server
+        run: |
+          DEPLOY_ABS="${{ secrets.BACKEND_DEPLOY_PATH }}"
+          DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
+          ssh -p ${{ secrets.CPANEL_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} bash << SSHEOF >> $GITHUB_ENV
+          source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
+          printenv | grep -E '^(APP_KEYS|API_TOKEN_SALT|ADMIN_JWT_SECRET|TRANSFER_TOKEN_SALT|JWT_SECRET|NODE_ENV)='
+          SSHEOF
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: website-backend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: website-backend
+        run: npm ci
+
+      - name: Build Strapi admin panel
+        working-directory: website-backend
+        run: npm run build
+        # APP_KEYS, JWT_SECRET etc. are already in the environment from the fetch step
+
+      - name: Sync build to server
         run: |
           rsync -az --delete \
             -e "ssh -p ${{ secrets.CPANEL_PORT }} -o StrictHostKeyChecking=no" \
@@ -70,7 +87,7 @@ jobs:
             --exclude='public/uploads' \
             website-backend/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.BACKEND_DEPLOY_PATH }}/
 
-      - name: Install, build & restart on server
+      - name: Install production deps & restart
         run: |
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
@@ -78,20 +95,13 @@ jobs:
             set -e
             DEPLOY_ABS="${{ secrets.BACKEND_DEPLOY_PATH }}"
             DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
-            # Remove stale node_modules if it's a real folder (CloudLinux needs it as symlink)
+            # Remove stale node_modules if it's a real folder (CloudLinux needs symlink)
             if [ -d "$DEPLOY_ABS/node_modules" ] && [ ! -L "$DEPLOY_ABS/node_modules" ]; then
               rm -rf "$DEPLOY_ABS/node_modules"
             fi
-            # Source cPanel Node.js venv so node/npm are on PATH
             source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
             cd "$DEPLOY_ABS"
-            # Install all deps (needed for Strapi admin build)
-            npm install
-            # Build Strapi admin panel — env vars come from cPanel Node.js Selector
-            npm run build
-            # Remove devDeps after build
-            npm prune --omit=dev
-            # Restart Passenger
+            npm install --omit=dev
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Backend deployed successfully"
           EOF
