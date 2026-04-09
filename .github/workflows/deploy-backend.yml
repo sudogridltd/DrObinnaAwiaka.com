@@ -65,7 +65,8 @@ jobs:
             --exclude='dist' \
             --exclude='tmp' \
             --exclude='.tmp' \
-            --exclude='database' \
+            --exclude='database/*.db' \
+            --exclude='database/*.db-journal' \
             --exclude='public/uploads' \
             website-backend/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.BACKEND_DEPLOY_PATH }}/
 
