@@ -14,7 +14,8 @@
     "seed": "ts-node scripts/seed.ts",
     "sync-types": "node scripts/sync-types.mjs",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "postinstall": "node -e \"try{const fs=require('fs'),p='node_modules/lodash/package.json',pkg=JSON.parse(fs.readFileSync(p,'utf8'));if(!pkg.exports){pkg.exports={'.':{require:'./lodash.js',default:'./lodash.js'},'./fp':{require:'./fp.js',default:'./fp.js'},'./fp.js':{require:'./fp.js',default:'./fp.js'}};fs.writeFileSync(p,JSON.stringify(pkg,null,2));console.log('Patched lodash exports for Node 22 ESM compatibility');}}catch(e){console.warn('lodash patch skipped:',e.message)}\""
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.40.0",
