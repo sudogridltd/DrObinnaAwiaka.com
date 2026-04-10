@@ -5,7 +5,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const isProduction = process.env.NODE_ENV === 'production'
+// Default to production unless explicitly in development mode.
+// On cPanel, NODE_ENV may not be set at all — we never want to start
+// the Vite dev server (which tries to use HMR WebSockets) on the server.
+const isProduction = process.env.NODE_ENV !== 'development'
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 async function startServer() {
