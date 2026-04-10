@@ -6,16 +6,18 @@
 const { existsSync } = require('fs');
 const { resolve } = require('path');
 
-// Patch lodash for Node 22 ESM compatibility before Strapi loads.
-const patchScript = resolve(__dirname, 'scripts/patch-lodash.cjs');
+// Patch all CJS packages that Strapi's .mjs files import named exports from.
+// Node 22 ESM can't detect named exports from dynamic module.exports patterns,
+// so we generate .mjs wrappers with explicit named exports before Strapi loads.
+const patchScript = resolve(__dirname, 'scripts/patch-cjs-esm.cjs');
 if (existsSync(patchScript)) {
   try {
     require(patchScript);
   } catch (e) {
-    console.warn('[start] lodash patch failed:', e.message);
+    console.warn('[start] CJS/ESM patch failed:', e.message);
   }
 } else {
-  console.warn('[start] patch-lodash.cjs not found, skipping');
+  console.warn('[start] patch-cjs-esm.cjs not found, skipping');
 }
 
 // Dynamic import() inside an async IIFE — the only way to load ESM
