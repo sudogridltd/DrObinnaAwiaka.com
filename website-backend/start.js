@@ -1,23 +1,16 @@
-// cPanel Node.js Selector startup file.
-// The Application startup file field only accepts a .js path — no CLI args.
-// This wrapper patches lodash for Node 22 ESM compatibility, then starts
-// Strapi via dynamic import (so the patch runs before any Strapi module loads).
+// cPanel / LiteSpeed startup file.
+// lsnode loads this via require() — so it MUST be pure CJS:
+// no top-level import statements, no top-level await.
+'use strict';
 
-import { createRequire } from 'module';
-import { existsSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+const { existsSync } = require('fs');
+const { resolve } = require('path');
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const _require = createRequire(import.meta.url);
-
-// Patch lodash synchronously before any Strapi ESM module resolves lodash/fp.
-// Without this, Node 22 ESM throws:
-//   SyntaxError: 'lodash/fp' does not provide an export named 'get'
+// Patch lodash for Node 22 ESM compatibility before Strapi loads.
 const patchScript = resolve(__dirname, 'scripts/patch-lodash.cjs');
 if (existsSync(patchScript)) {
   try {
-    _require(patchScript);
+    require(patchScript);
   } catch (e) {
     console.warn('[start] lodash patch failed:', e.message);
   }
@@ -25,10 +18,14 @@ if (existsSync(patchScript)) {
   console.warn('[start] patch-lodash.cjs not found, skipping');
 }
 
-// Dynamic import ensures Strapi (and therefore lodash/fp) is resolved AFTER
-// the patch above has written fp.mjs and updated lodash's package.json.
-const { createStrapi, compileStrapi } = await import('@strapi/strapi');
-
-const appContext = await compileStrapi();
-const app = await createStrapi(appContext).load();
-await app.start();
+// Dynamic import() inside an async IIFE — the only way to load ESM
+// (Strapi uses ESM) from a CJS entry point.
+(async () => {
+  const { createStrapi, compileStrapi } = await import('@strapi/strapi');
+  const appContext = await compileStrapi();
+  const app = await createStrapi(appContext).load();
+  await app.start();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
