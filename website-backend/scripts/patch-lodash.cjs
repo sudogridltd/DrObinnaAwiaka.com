@@ -1,13 +1,13 @@
-// Patches lodash so `import { get } from 'lodash/fp'` works in Node 22 ESM.
+// Patches lodash so named ESM imports work in Node 22.
 //
-// Problem: lodash has no "exports" field, so Node 22 ESM resolution for
-// `lodash/fp` falls through to the `fp/` directory, which throws
-// ERR_UNSUPPORTED_DIR_IMPORT. Even with an exports map pointing to fp.js,
-// `import { get }` fails because fp.js uses dynamic module.exports so
-// cjs-module-lexer can't detect named exports statically.
+// Problem: lodash uses dynamic module.exports so cjs-module-lexer can't
+// detect named exports statically. Both the main package and lodash/fp are
+// affected. Strapi imports e.g.:
+//   import _, { flatten } from 'lodash'
+//   import { get } from 'lodash/fp'
 //
-// Fix: generate fp.mjs that explicitly re-exports every key from fp.js,
-// then add an exports field pointing `./fp` to it.
+// Fix: generate lodash.mjs and fp.mjs that explicitly re-export every key,
+// then add an exports field pointing ESM imports to those wrappers.
 'use strict';
 
 const fs = require('fs');
@@ -21,29 +21,37 @@ if (!fs.existsSync(pkgPath)) {
   process.exit(0);
 }
 
-// Load the fp build via CJS to discover all exported function names.
+function validIdents(obj) {
+  return Object.keys(obj).filter(k => /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k));
+}
+
+function writeMjs(filename, requirePath, names) {
+  const lines = [
+    `import _mod from ${JSON.stringify(requirePath)};`,
+    'export default _mod;',
+    ...names.map(n => `export const ${n} = _mod[${JSON.stringify(n)}];`),
+  ];
+  fs.writeFileSync(path.join(lodashDir, filename), lines.join('\n') + '\n');
+}
+
+// Generate lodash.mjs — covers `import { flatten } from 'lodash'`
+const lodash = require(path.join(lodashDir, 'lodash.js'));
+const lodashNames = validIdents(lodash);
+writeMjs('lodash.mjs', './lodash.js', lodashNames);
+
+// Generate fp.mjs — covers `import { get } from 'lodash/fp'`
 const fp = require(path.join(lodashDir, 'fp.js'));
-const names = Object.keys(fp).filter(k => /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k));
+const fpNames = validIdents(fp);
+writeMjs('fp.mjs', './fp.js', fpNames);
 
-// Generate a proper ESM wrapper that re-exports each function as a named export.
-// Use a plain `import` (not createRequire) so Vite's browser bundle can also
-// process this file without hitting Node.js-only APIs.
-const mjs = [
-  "import _fp from './fp.js';",
-  "export default _fp;",
-  ...names.map(n => `export const ${n} = _fp[${JSON.stringify(n)}];`),
-].join('\n') + '\n';
-
-fs.writeFileSync(path.join(lodashDir, 'fp.mjs'), mjs);
-
-// Update package.json to add an exports field.
+// Update package.json exports field.
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 pkg.exports = {
-  '.': { require: './lodash.js', import: './lodash.js' },
-  './fp': { import: './fp.mjs', require: './fp.js' },
-  './*.js': { require: './*.js', default: './*.js' },
-  './*': { require: './*.js', default: './*.js' },
+  '.':      { import: './lodash.mjs', require: './lodash.js' },
+  './fp':   { import: './fp.mjs',     require: './fp.js' },
+  './*.js': { require: './*.js',      default: './*.js' },
+  './*':    { require: './*.js',      default: './*.js' },
 };
 fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
 
-console.log(`patch-lodash: generated fp.mjs with ${names.length} named exports`);
+console.log(`patch-lodash: lodash.mjs (${lodashNames.length} exports), fp.mjs (${fpNames.length} exports)`);
