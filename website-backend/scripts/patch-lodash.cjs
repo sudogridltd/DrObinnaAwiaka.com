@@ -26,10 +26,10 @@ const fp = require(path.join(lodashDir, 'fp.js'));
 const names = Object.keys(fp).filter(k => /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k));
 
 // Generate a proper ESM wrapper that re-exports each function as a named export.
+// Use a plain `import` (not createRequire) so Vite's browser bundle can also
+// process this file without hitting Node.js-only APIs.
 const mjs = [
-  "import { createRequire } from 'module';",
-  "const _require = createRequire(import.meta.url);",
-  "const _fp = _require('./fp.js');",
+  "import _fp from './fp.js';",
   "export default _fp;",
   ...names.map(n => `export const ${n} = _fp[${JSON.stringify(n)}];`),
 ].join('\n') + '\n';
