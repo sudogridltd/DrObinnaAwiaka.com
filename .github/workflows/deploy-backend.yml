@@ -106,6 +106,8 @@ jobs:
             # Patch all CJS packages that Strapi .mjs files import named exports
             # from — Node 22 ESM can't infer named exports from dynamic module.exports.
             node scripts/patch-cjs-esm.cjs
+            # Ensure uploads directory exists (excluded from rsync to preserve uploads).
+            mkdir -p public/uploads
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Backend deployed successfully"
           EOF
