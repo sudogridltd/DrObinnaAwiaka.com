@@ -14,8 +14,7 @@
     "seed": "ts-node scripts/seed.ts",
     "sync-types": "node scripts/sync-types.mjs",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "postinstall": "node scripts/patch-lodash.cjs"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.40.0",
