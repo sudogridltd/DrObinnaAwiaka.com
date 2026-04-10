@@ -40,7 +40,7 @@ fs.writeFileSync(path.join(lodashDir, 'fp.mjs'), mjs);
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 pkg.exports = {
   '.': { require: './lodash.js', import: './lodash.js' },
-  './fp': { import: './fp.mjs', require: './fp/index.js' },
+  './fp': { import: './fp.mjs', require: './fp.js' },
   './*.js': { require: './*.js', default: './*.js' },
   './*': { require: './*.js', default: './*.js' },
 };
