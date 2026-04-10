@@ -103,10 +103,9 @@ jobs:
             source "/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
             cd "$DEPLOY_ABS"
             npm install --omit=dev --ignore-scripts
-            # Run the lodash patch explicitly from the app dir so the relative
-            # path to scripts/patch-lodash.cjs resolves correctly.
-            # (postinstall was unreliable: npm sets cwd to the nodevenv lib dir)
-            node scripts/patch-lodash.cjs
+            # Patch all CJS packages that Strapi .mjs files import named exports
+            # from — Node 22 ESM can't infer named exports from dynamic module.exports.
+            node scripts/patch-cjs-esm.cjs
             mkdir -p tmp && touch tmp/restart.txt
             echo "✅ Backend deployed successfully"
           EOF
