@@ -50,17 +50,43 @@ jobs:
           DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
           DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
           ACTIVATE="/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
+          # Use bash -s to run the script on the remote server.
+          # cPanel stores app env vars in .env at the app root (set via the
+          # Node.js Selector UI). Source it so the vars appear in printenv.
+          # Also check .htaccess for PassengerEnvVar lines as a fallback.
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} \
-            "
-              [ -f '$ACTIVATE' ] && source '$ACTIVATE'
-              # cPanel stores app env vars in .env in the app directory,
-              # not as shell env vars — source it so they appear in printenv.
-              [ -f '$DEPLOY_ABS/.env' ] && set -a && source '$DEPLOY_ABS/.env' && set +a
-              printenv | grep -E '^(VITE_|NODE_ENV)=' || true
-            " \
-            >> $GITHUB_ENV
+            'bash -s' << ENDSSH
+          set -a
+          DEPLOY_ABS="$DEPLOY_ABS"
+          ACTIVATE="$ACTIVATE"
+          [ -f "\$ACTIVATE" ] && source "\$ACTIVATE"
+          [ -f "\$DEPLOY_ABS/.env" ] && source "\$DEPLOY_ABS/.env"
+          # Fallback: parse PassengerEnvVar directives from .htaccess
+          if [ -f "\$DEPLOY_ABS/.htaccess" ]; then
+            while IFS= read -r line; do
+              if [[ "\$line" =~ ^PassengerEnvVar[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)[[:space:]]+(.*)$ ]]; then
+                export "\${BASH_REMATCH[1]}"="\${BASH_REMATCH[2]}"
+              fi
+            done < "\$DEPLOY_ABS/.htaccess"
+          fi
+          set +a
+          # Log what was found (values masked) for debugging
+          echo "--- env vars captured ---" >&2
+          printenv | grep -E '^(VITE_|NODE_ENV)=' | sed 's/=.*/=***/' >&2
+          # Output the actual values to GITHUB_ENV
+          printenv | grep -E '^(VITE_|NODE_ENV)=' || true
+          ENDSSH
+
+      - name: Verify build env vars were captured
+        run: |
+          echo "VITE_STRAPI_URL present: ${{ env.VITE_STRAPI_URL != '' }}"
+          echo "VITE_STRAPI_API_TOKEN present: ${{ env.VITE_STRAPI_API_TOKEN != '' }}"
+          echo "NODE_ENV: ${{ env.NODE_ENV }}"
+          if [ -z "$VITE_STRAPI_URL" ]; then
+            echo "⚠️  WARNING: VITE_STRAPI_URL is empty — build will use localhost:1337 fallback"
+          fi
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
