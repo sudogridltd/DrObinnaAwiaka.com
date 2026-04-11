@@ -1,16 +1,18 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Deploy Frontend (Vike SSR) → cPanel shared hosting
 #
-# Required GitHub Secrets (SSH only):
-#   CPANEL_HOST          – server hostname or IP
-#   CPANEL_PORT          – SSH port (usually 22)
-#   CPANEL_USERNAME      – cPanel account username
-#   CPANEL_SSH_KEY       – SSH private key (no passphrase)
-#   FRONTEND_DEPLOY_PATH – absolute path on server
-#   BACKEND_DEPLOY_PATH  – needed to read VITE_* vars from backend app env
+# Required GitHub Secrets:
+#   CPANEL_HOST             – server hostname or IP
+#   CPANEL_PORT             – SSH port (usually 22)
+#   CPANEL_USERNAME         – cPanel account username
+#   CPANEL_SSH_KEY          – SSH private key (no passphrase)
+#   FRONTEND_DEPLOY_PATH    – absolute path on server
+#   VITE_STRAPI_URL         – Strapi API base URL (e.g. https://api.example.com)
+#   VITE_STRAPI_API_TOKEN   – Strapi read-only API token
 #
-# All app env vars (VITE_STRAPI_URL, VITE_STRAPI_API_TOKEN, NODE_ENV etc.)
-# are read from cPanel Node.js Selector at build time — not stored in GitHub.
+# Note: VITE_* vars are baked into the client bundle at build time by Vite.
+# At runtime, server.ts also injects them via window.__ENV__ from process.env
+# (set in cPanel Node.js Selector), so the runtime value always takes priority.
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Deploy Frontend
@@ -39,51 +41,14 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p ${{ secrets.CPANEL_PORT }} ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      # SSH to server, source the cPanel Node.js venv, and export the env vars
-      # we need for the build. They're written into GITHUB_ENV so subsequent
-      # steps can use them — nothing is stored as a GitHub Secret.
-      - name: Fetch build env vars from server
+      # VITE_* vars are stored as GitHub Secrets and passed directly to the
+      # build. At runtime, server.ts reads them from process.env (set in
+      # cPanel Node.js Selector) and injects them into every HTML page via
+      # window.__ENV__, so the live server value always takes priority.
+      - name: Set build env vars
         run: |
-          DEPLOY_ABS="${{ secrets.FRONTEND_DEPLOY_PATH }}"
-          DEPLOY_REL=$(echo "$DEPLOY_ABS" | sed 's|^/home/[^/]*/||')
-          ACTIVATE="/home/${{ secrets.CPANEL_USERNAME }}/nodevenv/$DEPLOY_REL/22/bin/activate"
-          # Use bash -s to run the script on the remote server.
-          # cPanel stores app env vars in .env at the app root (set via the
-          # Node.js Selector UI). Source it so the vars appear in printenv.
-          # Also check .htaccess for PassengerEnvVar lines as a fallback.
-          ssh -p ${{ secrets.CPANEL_PORT }} \
-            -o StrictHostKeyChecking=no \
-            ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} \
-            'bash -s' << ENDSSH
-          set -a
-          DEPLOY_ABS="$DEPLOY_ABS"
-          ACTIVATE="$ACTIVATE"
-          [ -f "\$ACTIVATE" ] && source "\$ACTIVATE"
-          [ -f "\$DEPLOY_ABS/.env" ] && source "\$DEPLOY_ABS/.env"
-          # Fallback: parse PassengerEnvVar directives from .htaccess
-          if [ -f "\$DEPLOY_ABS/.htaccess" ]; then
-            while IFS= read -r line; do
-              if [[ "\$line" =~ ^PassengerEnvVar[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)[[:space:]]+(.*)$ ]]; then
-                export "\${BASH_REMATCH[1]}"="\${BASH_REMATCH[2]}"
-              fi
-            done < "\$DEPLOY_ABS/.htaccess"
-          fi
-          set +a
-          # Log what was found (values masked) for debugging
-          echo "--- env vars captured ---" >&2
-          printenv | grep -E '^(VITE_|NODE_ENV)=' | sed 's/=.*/=***/' >&2
-          # Output the actual values to GITHUB_ENV
-          printenv | grep -E '^(VITE_|NODE_ENV)=' || true
-          ENDSSH
-
-      - name: Verify build env vars were captured
-        run: |
-          echo "VITE_STRAPI_URL present: ${{ env.VITE_STRAPI_URL != '' }}"
-          echo "VITE_STRAPI_API_TOKEN present: ${{ env.VITE_STRAPI_API_TOKEN != '' }}"
-          echo "NODE_ENV: ${{ env.NODE_ENV }}"
-          if [ -z "$VITE_STRAPI_URL" ]; then
-            echo "⚠️  WARNING: VITE_STRAPI_URL is empty — build will use localhost:1337 fallback"
-          fi
+          echo "VITE_STRAPI_URL=${{ secrets.VITE_STRAPI_URL }}" >> $GITHUB_ENV
+          echo "VITE_STRAPI_API_TOKEN=${{ secrets.VITE_STRAPI_API_TOKEN }}" >> $GITHUB_ENV
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
