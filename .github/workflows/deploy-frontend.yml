@@ -18,9 +18,6 @@ name: Deploy Frontend
 on:
   push:
     branches: [production]
-    paths:
-      - 'website/**'
-      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 jobs:
@@ -129,14 +126,15 @@ jobs:
             --filter='protect node_modules' \
             --exclude='.git' \
             --exclude='tmp' \
-            --include='dist/' \
-            --include='dist/**' \
-            --include='public/' \
-            --include='public/**' \
-            --include='server.js' \
-            --include='package.json' \
-            --include='vite.config.production.js' \
-            --exclude='*' \
+            --exclude='src' \
+            --exclude='pages' \
+            --exclude='*.ts' \
+            --exclude='*.tsx' \
+            --exclude='*.md' \
+            --exclude='tsconfig*' \
+            --exclude='eslint*' \
+            --exclude='vite.config.ts' \
+            --exclude='pnpm-lock.yaml' \
             website/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:${{ secrets.FRONTEND_DEPLOY_PATH }}/
 
       - name: Install production deps & restart
