@@ -53,7 +53,13 @@ jobs:
           ssh -p ${{ secrets.CPANEL_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} \
-            "[ -f '$ACTIVATE' ] && source '$ACTIVATE'; printenv | grep -E '^(VITE_|NODE_ENV)=' || true" \
+            "
+              [ -f '$ACTIVATE' ] && source '$ACTIVATE'
+              # cPanel stores app env vars in .env in the app directory,
+              # not as shell env vars — source it so they appear in printenv.
+              [ -f '$DEPLOY_ABS/.env' ] && set -a && source '$DEPLOY_ABS/.env' && set +a
+              printenv | grep -E '^(VITE_|NODE_ENV)=' || true
+            " \
             >> $GITHUB_ENV
 
       - name: Setup pnpm
