@@ -70,7 +70,8 @@ async function fetchStrapi<T>(
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Strapi API error ${res.status}: ${text}`);
+    const method = options.method ?? 'GET';
+    throw new Error(`Strapi ${res.status} ${method} ${url} — ${text}`);
   }
 
   return res.json() as Promise<T>;
