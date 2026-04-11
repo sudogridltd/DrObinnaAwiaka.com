@@ -30,8 +30,26 @@ import type {
   StrapiCustomer,
 } from '@/types/strapi';
 
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL ?? 'http://localhost:1337';
-const STRAPI_API_TOKEN = import.meta.env.VITE_STRAPI_API_TOKEN ?? '';
+// On the server (SSR), read directly from process.env so the URL is always
+// correct regardless of what was baked in at build time.
+// On the client, prefer window.__ENV__ (injected by server.ts at runtime)
+// which also reflects the live server env, falling back to the build-time
+// import.meta.env values only as a last resort.
+function getEnv(key: 'STRAPI_URL' | 'STRAPI_API_TOKEN', buildTimeFallback: string): string {
+  // Server-side (Node.js)
+  if (typeof process !== 'undefined' && process.env) {
+    const val = process.env[`VITE_${key}`] || process.env[key]
+    if (val) return val
+  }
+  // Client-side runtime injection
+  if (typeof window !== 'undefined' && (window as any).__ENV__?.[key]) {
+    return (window as any).__ENV__[key]
+  }
+  return buildTimeFallback
+}
+
+const STRAPI_URL = getEnv('STRAPI_URL', import.meta.env.VITE_STRAPI_URL ?? 'http://localhost:1337');
+const STRAPI_API_TOKEN = getEnv('STRAPI_API_TOKEN', import.meta.env.VITE_STRAPI_API_TOKEN ?? '');
 
 // ─────────────────────────────────────────────────────
 // Core fetch helper
