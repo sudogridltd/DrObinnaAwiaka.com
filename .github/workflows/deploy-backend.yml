@@ -80,7 +80,6 @@ jobs:
             --exclude='node_modules' \
             --filter='protect node_modules' \
             --exclude='.git' \
-            --exclude='dist' \
             --exclude='tmp' \
             --exclude='.tmp' \
             --exclude='database/*.db' \
