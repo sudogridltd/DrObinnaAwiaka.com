@@ -25,6 +25,14 @@ async function startServer() {
     app.use(vite.middlewares)
   }
 
+  // Inject runtime env vars into every HTML response as window.__ENV__.
+  // This lets strapi.ts read STRAPI_URL/STRAPI_API_TOKEN at runtime on the
+  // client, avoiding the need to bake them in at Vite build time.
+  const envScript = `<script>window.__ENV__=${JSON.stringify({
+    STRAPI_URL: process.env.VITE_STRAPI_URL || process.env.STRAPI_URL || '',
+    STRAPI_API_TOKEN: process.env.VITE_STRAPI_API_TOKEN || process.env.STRAPI_API_TOKEN || '',
+  })}</script>`
+
   app.get(/(.*)/, async (req, res, next) => {
     try {
       const pageContext = await renderPage({ urlOriginal: req.originalUrl })
@@ -32,7 +40,11 @@ async function startServer() {
       if (!httpResponse) return next()
       const { body, statusCode, headers } = httpResponse
       headers.forEach(([name, value]) => res.setHeader(name, value))
-      res.status(statusCode).send(body)
+      // Inject env script into HTML responses only
+      const finalBody = headers.some(([k, v]) => k === 'content-type' && String(v).includes('text/html'))
+        ? body.replace('</head>', `${envScript}</head>`)
+        : body
+      res.status(statusCode).send(finalBody)
     } catch (err) {
       console.error(err)
       next(err)
