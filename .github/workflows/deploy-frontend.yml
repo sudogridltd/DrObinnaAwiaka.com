@@ -18,9 +18,6 @@ name: Deploy Frontend
 on:
   push:
     branches: [production]
-    paths:
-      - 'website/**'
-      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 jobs:
