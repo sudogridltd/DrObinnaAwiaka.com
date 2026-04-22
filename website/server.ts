@@ -4,6 +4,7 @@ import { renderPage } from 'vike/server'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
+import { generateSitemap, getSiteUrl, invalidateSitemapCache } from './sitemap.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // Default to production unless explicitly in development mode.
@@ -69,6 +70,37 @@ async function startServer() {
     STRAPI_URL: process.env.VITE_STRAPI_URL || process.env.STRAPI_URL || '',
     STRAPI_API_TOKEN: process.env.VITE_STRAPI_API_TOKEN || process.env.STRAPI_API_TOKEN || '',
   })}</script>`
+
+  // ── Sitemap ────────────────────────────────────────────────────────────────
+  app.get('/sitemap.xml', async (_req, res) => {
+    try {
+      const xml = await generateSitemap()
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8')
+      res.setHeader('Cache-Control', 'public, max-age=3600')
+      res.send(xml)
+      log('INFO', 'Served sitemap.xml')
+    } catch (err) {
+      log('ERROR', 'Failed to generate sitemap:', err)
+      res.status(500).send('Failed to generate sitemap')
+    }
+  })
+
+  // Force-regenerate the sitemap immediately (admin use, no auth needed since
+  // it only invalidates the cache — the next /sitemap.xml request rebuilds it).
+  app.post('/_sitemap/regenerate', (_req, res) => {
+    invalidateSitemapCache()
+    res.json({ ok: true, message: 'Sitemap cache cleared. Next /sitemap.xml request will rebuild.' })
+    log('INFO', 'Sitemap cache invalidated via POST /_sitemap/regenerate')
+  })
+
+  // ── Robots.txt ─────────────────────────────────────────────────────────────
+  app.get('/robots.txt', (_req, res) => {
+    const siteUrl = getSiteUrl()
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.send(
+      `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
+    )
+  })
 
   app.get(/(.*)/, async (req, res, next) => {
     const start = Date.now()
