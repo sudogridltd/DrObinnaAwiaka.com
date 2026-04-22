@@ -144,17 +144,17 @@ export default function AboutPage({
                 My Mission
               </p>
               <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-                Making Personal Growth{" "}
-                <span className="text-primary">Accessible & Actionable</span>
+                Transforming Vision Into{" "}
+                <span className="text-primary">Purpose & Action</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                I believe that every person has the power to create an
-                extraordinary life. My mission is to bridge the gap between
-                where you are and where you want to be — through compassionate
-                coaching, proven frameworks, and unwavering accountability. I
-                serve individuals from all walks of life, from corporate
-                executives to aspiring entrepreneurs, helping them find clarity,
-                build confidence, and take meaningful action.
+                With 20+ years bridging optometric science and human
+                transformation, my mission is to empower individuals and
+                organisations to see clearly — both literally and figuratively.
+                From clinical care to executive coaching, I serve leaders,
+                entrepreneurs, and professionals across Africa and beyond,
+                helping them find clarity, build confidence, and take meaningful
+                action toward their highest potential.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-slide-in-right">
@@ -179,9 +179,9 @@ export default function AboutPage({
                 },
                 {
                   icon: Award,
-                  title: "Certified Excellence",
+                  title: "Recognised Excellence",
                   description:
-                    "ICF-certified with extensive training in NLP, positive psychology, and executive leadership development.",
+                    "ICF-certified coach, Fellow of FAAO, immediate past President of the Nigerian Optometric Association, and 2023 inductee of the Kwame Nkrumah Grow Africa Hall of Fame.",
                 },
               ].map((item) => (
                 <Card
@@ -236,7 +236,7 @@ export default function AboutPage({
                 My Journey
               </p>
               <h2 className="text-3xl md:text-5xl font-bold animate-slide-in-up mb-6">
-                From Corporate to <span className="text-primary">Coaching</span>
+                From Optometry to <span className="text-primary">Coaching & Leadership</span>
               </h2>
               <div className="aspect-[16/9] rounded-xl overflow-hidden border border-border mb-8 shadow-lg">
                 <img
