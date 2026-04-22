@@ -37,15 +37,21 @@ export async function setupPermissions(strapi: any): Promise<void> {
   try {
     const publicRole = await strapi.db
       .query('plugin::users-permissions.role')
-      .findOne({ where: { type: 'public' }, populate: ['permissions'] });
+      .findOne({ where: { type: 'public' } });
 
     if (!publicRole) {
       strapi.log.warn('[permissions] Public role not found — skipping');
       return;
     }
 
+    // Query permissions separately — mirrors how findPublicPermissions() works
+    // in the users-permissions service, avoiding populate ambiguity.
+    const existingPerms = await strapi.db
+      .query('plugin::users-permissions.permission')
+      .findMany({ where: { role: { id: publicRole.id } } });
+
     const existingActions = new Set<string>(
-      (publicRole.permissions ?? []).map((p: any) => p.action as string)
+      existingPerms.map((p: any) => p.action as string)
     );
 
     const toAdd = PUBLIC_PERMISSIONS.filter((action) => !existingActions.has(action));
