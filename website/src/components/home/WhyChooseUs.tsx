@@ -12,7 +12,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 const DEFAULT_FEATURES = [
   { icon: "Heart", title: "Compassionate Approach", description: "A safe, judgment-free space where you can explore your thoughts, feelings, and aspirations with genuine support and empathy." },
   { icon: "Target", title: "Goal-Oriented Results", description: "Structured coaching frameworks that turn your vision into actionable steps, measurable milestones, and lasting transformation." },
-  { icon: "Lightbulb", title: "Proven Methodologies", description: "Evidence-based techniques drawn from positive psychology, NLP, and cognitive behavioral coaching — refined over 15+ years." },
+  { icon: "Lightbulb", title: "Proven Methodologies", description: "Evidence-based techniques drawn from optometry, positive psychology, NLP, and cognitive behavioural coaching — refined over 20+ years." },
   { icon: "Shield", title: "Confidential & Private", description: "Complete confidentiality for executives, entrepreneurs, and public figures. Your journey is personal — and protected." },
 ];
 

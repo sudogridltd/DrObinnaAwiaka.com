@@ -3,7 +3,7 @@ import type { HomeData } from './+data'
 
 export default function Head() {
   const { homepage } = useData<HomeData>()
-  const title = homepage?.seo?.metaTitle ?? 'Dr Obinna Awiaka | Life Coach, Speaker & Author'
+  const title = homepage?.seo?.metaTitle ?? 'Dr Obinna Awiaka | Doctor of Optometry, Life Coach & Speaker'
   const description = homepage?.seo?.metaDescription ?? 'Transform your life with expert coaching, courses, and resources. Unlock your full potential with Dr Obinna Awiaka\'s proven frameworks.'
   const ogImage = homepage?.seo?.openGraphImage?.url ?? '/og-image.jpg'
 
