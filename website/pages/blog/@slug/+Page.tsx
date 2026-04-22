@@ -8,19 +8,6 @@ import { Calendar, ArrowLeft, Clock } from 'lucide-react'
 export default function Page() {
   const { post, relatedPosts } = useData<BlogPostData>()
 
-  if (!post) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
-          <Button asChild>
-            <a href="/blog">Back to Blog</a>
-          </Button>
-        </div>
-      </div>
-    )
-  }
-
   const imageUrl = getStrapiMediaUrl(post.featuredImage?.url)
   const authorPhotoUrl = getStrapiMediaUrl(post.authorPhoto?.url)
   const publishedDate = post.publishedAt
