@@ -86,7 +86,7 @@ const GLOBAL_POPULATE = 'populate=logo&populate=favicon&populate=socialLinks&pop
 
 const HOMEPAGE_POPULATE = 'populate=hero&populate=stats&populate=whyChooseUsFeatures&populate=assuranceFeatures&populate=assuranceImage&populate=ctaButtons&populate=seo';
 
-const ABOUT_PAGE_POPULATE = 'populate=hero&populate=stats&populate=seo&populate=profilePhoto&populate=teamMembers&populate=socialLinks';
+const ABOUT_PAGE_POPULATE = 'populate=hero&populate=stats&populate=seo&populate=profilePhoto&populate=teamMembers&populate=socialLinks&populate=bio&populate=credentials&populate=awards&populate=books&populate=ctaButtons';
 
 const SERVICES_PAGE_POPULATE = 'populate=hero&populate=seo&populate=ctaButtons';
 
@@ -124,7 +124,7 @@ async function getHomepage(): Promise<StrapiHomepage> {
 
 async function getAboutPage(): Promise<StrapiAboutPage> {
   const res = await fetchStrapi<StrapiResponse<StrapiAboutPage>>(
-    `/about-page?${ABOUT_PAGE_POPULATE}&populate=profilePhoto`
+    `/about-page?${ABOUT_PAGE_POPULATE}`
   );
   return res.data;
 }

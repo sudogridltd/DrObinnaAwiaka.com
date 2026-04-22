@@ -17,8 +17,12 @@ export async function data(_pageContext: PageContextServer): Promise<HomeData> {
     strapiClient.getBlogPosts({ pageSize: 3 }),
   ])
 
-  const recentPosts = postsResult.status === 'fulfilled' 
-    ? postsResult.value.data 
+  if (postsResult.status === 'rejected') {
+    console.error('[index/data] Failed to fetch recent posts:', postsResult.reason)
+  }
+
+  const recentPosts = postsResult.status === 'fulfilled'
+    ? postsResult.value.data
     : []
 
   return {

@@ -14,6 +14,13 @@ export async function data(): Promise<BlogData> {
     strapiClient.getBlogCategories(),
   ])
 
+  if (postsResult.status === 'rejected') {
+    console.error('[blog/data] Failed to fetch blog posts:', postsResult.reason)
+  }
+  if (categories.status === 'rejected') {
+    console.error('[blog/data] Failed to fetch categories:', categories.reason)
+  }
+
   const posts = postsResult.status === 'fulfilled' ? postsResult.value.data : []
 
   return {
