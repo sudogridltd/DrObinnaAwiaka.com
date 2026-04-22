@@ -62,11 +62,11 @@ export default function DriveWithAssurance({ homepage }: { homepage: StrapiHomep
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">Dr. Obinna Awiaka</h3>
-                  <p className="text-xs text-muted-foreground">Life Coach, Speaker & Author</p>
+                  <p className="text-xs text-muted-foreground">Doctor of Optometry & Life Coach</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {["ICF Certified", "15+ Years", "Speaker", "Author"].map((tag) => (
+                {["Optometrist", "ICF Certified", "20+ Years", "Speaker"].map((tag) => (
                   <span key={tag} className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
                     {tag}
                   </span>

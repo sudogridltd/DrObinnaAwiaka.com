@@ -1,12 +1,12 @@
 {
   "global": {
     "siteName": "Dr Obinna Awiaka",
-    "siteTagline": "Life Coach, Speaker & Author",
+    "siteTagline": "Doctor of Optometry, Life Coach & Speaker",
     "email": "hello@drobinnaawiaka.com",
     "phone": "(123) 456-7890",
     "address": "Worldwide — Virtual & In-Person",
-    "footerTagline": "Empowering people to live with purpose and passion. Expert coaching, transformative workshops, and proven frameworks designed to help you break through barriers.",
-    "copyrightText": "© 2024 Dr Obinna Awiaka. All rights reserved.",
+    "footerTagline": "A multiple award-winning Doctor of Optometry and ICF-certified life coach with 20+ years of experience. Registrar/CEO of ODORBN, Founder of Eyemasters Ltd, and one of Africa's most influential voices in healthcare and personal development.",
+    "copyrightText": "© 2025 Dr Obinna Awiaka. All rights reserved.",
     "announcementBarEnabled": false,
     "announcementBar": "",
     "socialLinks": [
@@ -93,8 +93,8 @@
   },
   "homepage": {
     "hero": {
-      "title": "Transform Your Life, Unlock Your Full Potential",
-      "subtitle": "Expert coaching, transformative workshops, and proven frameworks designed to help you break through barriers, find clarity, and create the life you truly deserve.",
+      "title": "Transforming Lives Through Vision & Purpose",
+      "subtitle": "A multiple award-winning Doctor of Optometry and ICF-certified life coach with 20+ years of experience. Empowering individuals and organisations to achieve clarity, purpose, and peak performance.",
       "buttons": [
         {
           "text": "Book a Free Discovery Call",
@@ -112,12 +112,12 @@
     },
     "stats": [
       {
-        "value": "500+",
-        "label": "Lives Transformed"
+        "value": "20+",
+        "label": "Years Experience"
       },
       {
-        "value": "15+",
-        "label": "Years Experience"
+        "value": "500+",
+        "label": "Lives Transformed"
       },
       {
         "value": "50+",
@@ -144,7 +144,7 @@
       {
         "icon": "Lightbulb",
         "title": "Proven Methodologies",
-        "description": "Evidence-based techniques drawn from positive psychology, NLP, and cognitive behavioral coaching — refined over 15+ years."
+        "description": "Evidence-based techniques drawn from optometry, positive psychology, NLP, and cognitive behavioural coaching — refined over 20+ years."
       },
       {
         "icon": "Shield",
@@ -154,10 +154,10 @@
     ],
     "assuranceTitle": "Stop Settling for Less. Start Living With Purpose",
     "assuranceSubtitle": "Your Transformation Starts Here",
-    "assuranceDescription": "Whether you're navigating a career transition, seeking personal growth, or building stronger relationships — Dr Obinna Awiaka's coaching gives you the clarity, confidence, and accountability to make lasting change.",
+    "assuranceDescription": "Whether you seek optometric expertise, life coaching, leadership development, or an inspiring speaker — Dr. Obinna Awiaka's 20+ years of experience and proven methodologies deliver clarity, confidence, and lasting transformation.",
     "assuranceFeatures": [
       {
-        "title": "Personalized 1-on-1 coaching sessions"
+        "title": "Personalised 1-on-1 coaching sessions"
       },
       {
         "title": "Actionable strategies tailored to your goals"
@@ -170,7 +170,7 @@
       }
     ],
     "servicesShowcaseTitle": "Tailored Programs for Every Stage of Growth",
-    "servicesShowcaseSubtitle": "Whether you're an individual seeking personal breakthroughs or an organization investing in your people — we have a program for you.",
+    "servicesShowcaseSubtitle": "Whether you're an individual seeking personal breakthroughs or an organisation investing in your people — we have a program for you.",
     "testimonialsTitle": "What Our Clients Say",
     "testimonialsSubtitle": "Real stories from real people who chose to invest in themselves and experienced transformational results.",
     "newsletterTitle": "Get Weekly Inspiration",
@@ -179,8 +179,8 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "Empowering People to Live With Purpose & Passion",
-      "subtitle": "Dr Obinna Awiaka is a certified life coach, international speaker, and bestselling author with over 15 years of experience helping individuals and organizations unlock their full potential.",
+      "title": "Transforming Lives Through Vision, Purpose & Excellence",
+      "subtitle": "Dr. Obinna Edwin Awiaka is a multiple award-winning Doctor of Optometry, ICF-certified life coach, and international speaker with 20+ years of experience helping individuals and organisations achieve their highest potential.",
       "buttons": [
         {
           "text": "Work With Me",
@@ -196,7 +196,7 @@
         "children": [
           {
             "type": "text",
-            "text": "My journey into coaching began after a successful 10-year career in corporate leadership. Despite external success, I felt a deep calling to help others navigate the same challenges I had overcome — burnout, imposter syndrome, and the struggle to find authentic purpose."
+            "text": "Dr. Obinna Edwin Awiaka is a multiple award-winning Doctor of Optometry with over 20 years of industry experience and the Founder of Eyemasters Ltd — one of Nigeria's leading optometric practices. He currently serves as the Registrar/CEO of the Optometrists and Dispensing Opticians Registration Board of Nigeria (ODORBN), providing strategic leadership for the regulation and advancement of optometry across the nation."
           }
         ]
       },
@@ -205,7 +205,7 @@
         "children": [
           {
             "type": "text",
-            "text": "I invested years in rigorous training, earning certifications from the International Coach Federation and mastering techniques in NLP, positive psychology, and transformational leadership."
+            "text": "A man of deep purpose, Dr. Awiaka extended his impact beyond clinical care by training as an ICF Professional Certified Coach at the Lanre Olusola Coaching Academy — earning the distinction of 'Dream Coach'. He has served as the Clinical Director of Special Olympics Nigeria for two decades, championing eye care for persons with intellectual disabilities, and founded the ISee Foundation to provide free treatment to thousands of vulnerable women and children. He also founded three successful eyewear lines: Drobinno (2015), Dreamcoach (2018), and Babybliss (2021)."
           }
         ]
       },
@@ -214,19 +214,19 @@
         "children": [
           {
             "type": "text",
-            "text": "Today, I serve clients across 15+ countries, helping them move from surviving to thriving. My books, workshops, and online courses have reached thousands of people worldwide."
+            "text": "An internationally recognised leader, Dr. Awiaka is the immediate past President of the Nigerian Optometric Association (NOA), a Fellow of the American Academy of Optometry (FAAO), and was inducted into the Kwame Nkrumah Grow Africa Hall of Fame in 2023. He has delivered coaching and speaking engagements to organisations including Addax Petroleum, Ecobank, Schlumberger, UBA, and Unilever. As the publisher of Eyecare Magazine and initiator of West Africa's first international optical exhibition, he remains one of Africa's most influential voices in both healthcare and personal development."
           }
         ]
       }
     ],
     "stats": [
       {
-        "value": "500+",
-        "label": "Lives Transformed"
+        "value": "20+",
+        "label": "Years Experience"
       },
       {
-        "value": "15+",
-        "label": "Years Experience"
+        "value": "500+",
+        "label": "Lives Transformed"
       },
       {
         "value": "50+",
@@ -234,35 +234,98 @@
       },
       {
         "value": "3",
-        "label": "Published Books"
+        "label": "Eyewear Brands Founded"
       }
     ],
-    "credentialsTitle": "Certifications & Training",
+    "credentialsTitle": "Qualifications & Professional Memberships",
     "credentials": [
+      {
+        "text": "Doctor of Optometry (OD)"
+      },
       {
         "text": "ICF Professional Certified Coach (PCC)"
       },
       {
-        "text": "Certified NLP Practitioner"
+        "text": "Registrar/CEO — ODORBN"
       },
       {
-        "text": "DISC Assessment Certified"
+        "text": "Immediate Past President — Nigerian Optometric Association (NOA)"
       },
       {
-        "text": "Mental Health First Aid Certified"
+        "text": "Fellow, American Academy of Optometry (FAAO)"
       },
       {
-        "text": "Positive Psychology Certification"
+        "text": "Member, World Council of Optometry (WCO)"
       },
       {
-        "text": "Executive Leadership Coach"
+        "text": "AFCO Electoral Committee Chairman (2023)"
+      },
+      {
+        "text": "Fellow, Chartered Institute of Information & Strategy Management (CIISM)"
+      },
+      {
+        "text": "Fellow, Institute of Arts Management & Professional Studies (LIAMPS)"
+      },
+      {
+        "text": "Honorary Doctor of Philosophy — Process University, Delaware, USA"
+      },
+      {
+        "text": "Member, Nigerian Institute of Public Relations (NIPR)"
+      },
+      {
+        "text": "Kwame Nkrumah Grow Africa Hall of Fame Inductee (2023)"
       }
     ],
-    "ctaTitle": "Ready to Start Your Transformation?",
-    "ctaDescription": "Book a free discovery call and let's explore how coaching can help you achieve your most important goals.",
+    "awardsTitle": "Awards & Recognition",
+    "awards": [
+      {
+        "title": "Kwame Nkrumah Grow Africa Hall of Fame",
+        "issuer": "Grow Africa Foundation",
+        "year": 2023
+      },
+      {
+        "title": "Special Olympics International Award",
+        "issuer": "Special Olympics International"
+      },
+      {
+        "title": "Nigerian Optometric Association Leadership Award",
+        "issuer": "Nigerian Optometric Association"
+      },
+      {
+        "title": "Sagre Foundation Award",
+        "issuer": "Sagre Foundation"
+      },
+      {
+        "title": "College of Health Science Award",
+        "issuer": "College of Health Science"
+      },
+      {
+        "title": "State School of Health Technology Award",
+        "issuer": "State School of Health Technology"
+      },
+      {
+        "title": "Bebeji Class Award",
+        "issuer": "Bebeji",
+        "year": 2024
+      },
+      {
+        "title": "Innovation Award",
+        "issuer": "Various Organisations"
+      }
+    ],
+    "booksTitle": "Books & Publications",
+    "books": [
+      {
+        "title": "HMO Guide for Eye Clinics",
+        "description": "A comprehensive resource for eye care professionals navigating health maintenance organisations in Nigeria.",
+        "purchaseUrl": ""
+      }
+    ],
+    "ctaTitle": "Ready to Work With Dr. Obinna?",
+    "ctaDescription": "Whether you need optometric expertise, life coaching, or an inspirational speaker — book a consultation and take the first step toward transformation.",
     "ctaButtons": [
       {
-        "text": "Book Your Free Discovery Call",
+        "text": "Book a Consultation",
         "url": "/booking",
         "variant": "primary",
         "isExternal": false
@@ -272,7 +335,7 @@
   "servicesPage": {
     "hero": {
       "title": "Services Designed for Your Growth",
-      "subtitle": "From personal breakthroughs to organizational transformation, find the right coaching program to accelerate your journey.",
+      "subtitle": "From personal breakthroughs to organisational transformation, find the right coaching program to accelerate your journey.",
       "buttons": [
         {
           "text": "Book a Free Discovery Call",
@@ -283,7 +346,7 @@
       ]
     },
     "introTitle": "Coaching Services",
-    "introText": "From personal breakthroughs to organizational transformation, find the right coaching program to accelerate your journey.",
+    "introText": "From personal breakthroughs to organisational transformation, find the right coaching program to accelerate your journey.",
     "processTitle": "The Coaching Process",
     "processSteps": [
       {
@@ -293,8 +356,8 @@
       },
       {
         "icon": "CheckCircle",
-        "title": "Personalized Plan",
-        "description": "Based on our conversation, I create a customized coaching plan with clear objectives, timelines, and measurable outcomes."
+        "title": "Personalised Plan",
+        "description": "Based on our conversation, I create a customised coaching plan with clear objectives, timelines, and measurable outcomes."
       },
       {
         "icon": "CheckCircle",
@@ -419,14 +482,14 @@
       "title": "1-on-1 Life Coaching",
       "slug": "1-on-1-life-coaching",
       "category": "life-coaching",
-      "shortDescription": "Deep, personalized coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want.",
+      "shortDescription": "Deep, personalised coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want.",
       "description": [
         {
           "type": "paragraph",
           "children": [
             {
               "type": "text",
-              "text": "Deep, personalized coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want."
+              "text": "Deep, personalised coaching sessions designed to help you gain clarity, overcome limiting beliefs, and create a roadmap for the life you want."
             }
           ]
         }
@@ -436,7 +499,7 @@
           "text": "60-minute sessions (virtual or in-person)"
         },
         {
-          "text": "Personalized goal-setting framework"
+          "text": "Personalised goal-setting framework"
         },
         {
           "text": "Between-session accountability"
@@ -583,14 +646,14 @@
       "title": "Speaking & Workshops",
       "slug": "speaking-workshops",
       "category": "speaking",
-      "shortDescription": "Invite Dr Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation.",
+      "shortDescription": "Invite Dr. Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation.",
       "description": [
         {
           "type": "paragraph",
           "children": [
             {
               "type": "text",
-              "text": "Invite Dr Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation."
+              "text": "Invite Dr. Obinna Awiaka to deliver powerful keynotes, corporate workshops, or retreat facilitation on personal growth, leadership, and transformation."
             }
           ]
         }
@@ -814,7 +877,7 @@
           "text": "Habit tracker templates"
         },
         {
-          "text": "Guided visualization audio"
+          "text": "Guided visualisation audio"
         },
         {
           "text": "Progress assessment tool"
@@ -940,7 +1003,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Success isn't about doing more—it's about doing things differently. After working with hundreds of clients over the past 15 years, I've identified five habits that consistently hold people back from reaching their full potential.",
+              "text": "Success isn't about doing more—it's about doing things differently. After working with hundreds of clients over the past 20 years, I've identified five habits that consistently hold people back from reaching their full potential.",
               "type": "text"
             }
           ]
@@ -1016,7 +1079,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Burnout isn't a badge of honor—it's a warning sign. Prioritize sleep, exercise, and downtime. You can't pour from an empty cup.",
+              "text": "Burnout isn't a badge of honour—it's a warning sign. Prioritise sleep, exercise, and downtime. You can't pour from an empty cup.",
               "type": "text"
             }
           ]
@@ -1052,7 +1115,7 @@
       ],
       "isFeatured": true,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 8,
       "tags": [
         {
@@ -1094,7 +1157,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Emotional intelligence (EQ) is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others, and defuse conflict.",
+              "text": "Emotional intelligence (EQ) is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathise with others, and defuse conflict.",
               "type": "text"
             }
           ]
@@ -1132,7 +1195,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "The good news? Emotional intelligence can be developed. Start by practicing self-awareness—pause before reacting, name your emotions, and understand their source. Then work on empathy—truly listening to others without judgment.",
+              "text": "The good news? Emotional intelligence can be developed. Start by practising self-awareness—pause before reacting, name your emotions, and understand their source. Then work on empathy—truly listening to others without judgment.",
               "type": "text"
             }
           ]
@@ -1149,7 +1212,7 @@
       ],
       "isFeatured": true,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 6,
       "tags": [
         {
@@ -1246,7 +1309,7 @@
       ],
       "isFeatured": true,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 7,
       "tags": [
         {
@@ -1307,7 +1370,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Big confidence comes from accumulating small victories. Keep a 'win journal' where you record every success—no matter how small. Over time, you'll have a catalog of evidence that proves you're capable.",
+              "text": "Big confidence comes from accumulating small victories. Keep a 'win journal' where you record every success—no matter how small. Over time, you'll have a catalogue of evidence that proves you're capable.",
               "type": "text"
             }
           ]
@@ -1317,7 +1380,7 @@
           "level": 2,
           "children": [
             {
-              "text": "Practice Bravery Daily",
+              "text": "Practise Bravery Daily",
               "type": "text"
             }
           ]
@@ -1343,7 +1406,7 @@
       ],
       "isFeatured": false,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 5,
       "tags": [
         {
@@ -1440,7 +1503,7 @@
       ],
       "isFeatured": false,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 6,
       "tags": [
         {
@@ -1501,7 +1564,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Your interests, natural talents, and the things that energize you are clues. What do you lose track of time doing? What do people always come to you for? These are breadcrumbs on your purpose path.",
+              "text": "Your interests, natural talents, and the things that energise you are clues. What do you lose track of time doing? What do people always come to you for? These are breadcrumbs on your purpose path.",
               "type": "text"
             }
           ]
@@ -1529,7 +1592,7 @@
           "type": "paragraph",
           "children": [
             {
-              "text": "Your purpose can evolve. The work that fulfills you at 25 might be different at 45—and that's perfectly okay. Embrace the journey of becoming.",
+              "text": "Your purpose can evolve. The work that fulfils you at 25 might be different at 45—and that's perfectly okay. Embrace the journey of becoming.",
               "type": "text"
             }
           ]
@@ -1537,7 +1600,7 @@
       ],
       "isFeatured": false,
       "authorName": "Dr. Obinna Awiaka",
-      "authorBio": "Certified Life Coach, Speaker & Author with 15+ years of experience helping people unlock their full potential.",
+      "authorBio": "Doctor of Optometry, ICF-certified Life Coach, and international Speaker with 20+ years of experience helping people unlock their full potential.",
       "readingTimeMinutes": 7,
       "tags": [
         {

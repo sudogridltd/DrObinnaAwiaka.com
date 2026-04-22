@@ -41,7 +41,7 @@ export default function Hero({ homepage }: { homepage: StrapiHomepage | null }) 
             <div className="inline-flex items-center gap-2 dark:bg-primary/10 bg-primary/15 border border-primary/20 dark:border-primary/20 rounded-full px-4 py-1.5 mb-8 animate-fade-in shadow-sm dark:shadow-none">
               <Sparkles className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-primary uppercase tracking-wider">
-                Certified Life Coach &bull; Speaker &bull; Author
+                Doctor of Optometry &bull; Life Coach &bull; Speaker
               </span>
             </div>
 
