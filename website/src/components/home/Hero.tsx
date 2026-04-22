@@ -6,8 +6,8 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 import type { StrapiHomepage } from "@/types/strapi";
 
 const DEFAULT_STATS = [
+  { value: "20+", label: "Years Experience" },
   { value: "500+", label: "Lives Transformed" },
-  { value: "15+", label: "Years Experience" },
   { value: "50+", label: "Corporate Clients" },
   { value: "10K+", label: "Community Members" },
 ];
@@ -100,7 +100,7 @@ export default function Hero({ homepage }: { homepage: StrapiHomepage | null }) 
               <div className="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-primary/20 shadow-2xl shadow-primary/10">
                 <img
                   src={heroImage}
-                  alt="Dr. Obinna Awiaka — Life Coach, Speaker & Author"
+                  alt="Dr. Obinna Awiaka — Doctor of Optometry, Life Coach & Speaker"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -120,8 +120,8 @@ export default function Hero({ homepage }: { homepage: StrapiHomepage | null }) 
                 className="absolute -top-5 -right-5 bg-card/95 backdrop-blur-sm border border-border rounded-xl p-4 shadow-lg animate-fade-in"
                 style={{ animationDelay: "0.8s" }}
               >
-                <p className="text-2xl font-bold text-primary">{stats[1]?.value ?? "15+"}</p>
-                <p className="text-xs text-muted-foreground">{stats[1]?.label ?? "Years Experience"}</p>
+                <p className="text-2xl font-bold text-primary">{stats[1]?.value ?? "500+"}</p>
+                <p className="text-xs text-muted-foreground">{stats[1]?.label ?? "Lives Transformed"}</p>
               </div>
             </div>
           </div>

@@ -49,8 +49,8 @@ export default function Footer() {
   }, []);
 
   const siteName = global?.siteName ?? "Dr Obinna Awiaka";
-  const siteTagline = global?.siteTagline ?? "Life Coach";
-  const footerTagline = global?.footerTagline ?? "Certified Life Coach, Speaker & Author dedicated to helping individuals and organizations unlock their full potential and live with purpose.";
+  const siteTagline = global?.siteTagline ?? "Doctor of Optometry & Life Coach";
+  const footerTagline = global?.footerTagline ?? "A multiple award-winning Doctor of Optometry and ICF-certified life coach with 20+ years of experience. Registrar/CEO of ODORBN and Founder of Eyemasters Ltd.";
   const copyrightText = global?.copyrightText ?? `© ${new Date().getFullYear()} Dr Obinna Awiaka Coaching. All rights reserved.`;
   const phone = global?.phone ?? "(123) 456-7890";
   const email = global?.email ?? "hello@drobinnaawiaka.com";
@@ -161,7 +161,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#94a3b8]">{copyrightText}</p>
           <p className="text-xs text-[#94a3b8]">
-            Certified Life Coach &bull; Speaker &bull; Author
+            Doctor of Optometry &bull; Life Coach &bull; Speaker
           </p>
         </div>
       </div>

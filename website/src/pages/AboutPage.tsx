@@ -17,10 +17,10 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 import type { StrapiAboutPage } from "@/types/strapi";
 
 const DEFAULT_STATS = [
+  { value: "20+", label: "Years Experience", icon: Clock },
   { value: "500+", label: "Lives Transformed", icon: Users },
-  { value: "15+", label: "Years Experience", icon: Clock },
   { value: "50+", label: "Corporate Clients", icon: Award },
-  { value: "3", label: "Published Books", icon: BookOpen },
+  { value: "3", label: "Eyewear Brands Founded", icon: BookOpen },
 ];
 
 const STAT_ICONS = [Users, Clock, Award, BookOpen];
@@ -44,7 +44,7 @@ export default function AboutPage({
     "Empowering People to Live With Purpose & Passion";
   const heroSubtitle =
     aboutPage?.hero?.subtitle ??
-    "Dr. Obinna Awiaka is a certified life coach, international speaker, and bestselling author with over 15 years of experience helping individuals and organizations unlock their full potential. His approach blends evidence-based psychology with practical wisdom to create lasting transformation.";
+    "Dr. Obinna Edwin Awiaka is a multiple award-winning Doctor of Optometry, ICF-certified life coach, and international speaker with 20+ years of experience helping individuals and organisations achieve their highest potential.";
   const profilePhoto =
     getStrapiMediaUrl(aboutPage?.profilePhoto?.url) || IMAGES.coach.about;
 
@@ -70,9 +70,9 @@ export default function AboutPage({
         )
         .filter(Boolean)
     : [
-        "My journey into coaching began after a successful 10-year career in corporate leadership. Despite external success, I felt a deep calling to help others navigate the same challenges I had overcome — burnout, imposter syndrome, and the struggle to find authentic purpose.",
-        "I invested years in rigorous training, earning certifications from the International Coach Federation and mastering techniques in NLP, positive psychology, and transformational leadership.",
-        "Today, I serve clients across 15+ countries, helping them move from surviving to thriving. My books, workshops, and online courses have reached thousands of people worldwide.",
+        "Dr. Obinna Edwin Awiaka is a multiple award-winning Doctor of Optometry with over 20 years of industry experience and the Founder of Eyemasters Ltd — one of Nigeria's leading optometric practices. He currently serves as the Registrar/CEO of the Optometrists and Dispensing Opticians Registration Board of Nigeria (ODORBN).",
+        "A man of deep purpose, Dr. Awiaka extended his impact beyond clinical care by training as an ICF Professional Certified Coach at the Lanre Olusola Coaching Academy — earning the distinction of 'Dream Coach'. He has served as the Clinical Director of Special Olympics Nigeria for two decades and founded the ISee Foundation to provide free treatment to thousands of vulnerable women and children.",
+        "An internationally recognised leader, Dr. Awiaka is the immediate past President of the Nigerian Optometric Association (NOA), a Fellow of the American Academy of Optometry (FAAO), and was inducted into the Kwame Nkrumah Grow Africa Hall of Fame in 2023.",
       ];
 
   return (

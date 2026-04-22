@@ -3,8 +3,8 @@ import type { AboutData } from './+data'
 
 export default function Head() {
   const { aboutPage } = useData<AboutData>()
-  const title = aboutPage?.seo?.metaTitle ?? 'About Dr Obinna Awiaka | Certified Life Coach & Speaker'
-  const description = aboutPage?.seo?.metaDescription ?? 'Learn about Dr Obinna Awiaka — certified life coach, international speaker, and bestselling author with 15+ years helping people unlock their full potential.'
+  const title = aboutPage?.seo?.metaTitle ?? 'About Dr Obinna Awiaka | Doctor of Optometry & Life Coach'
+  const description = aboutPage?.seo?.metaDescription ?? 'Learn about Dr Obinna Edwin Awiaka — multiple award-winning Doctor of Optometry, ICF-certified life coach, and international speaker with 20+ years of experience.'
   const ogImage = aboutPage?.seo?.openGraphImage?.url ?? aboutPage?.profilePhoto?.url ?? '/og-image.jpg'
 
   return (
