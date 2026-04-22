@@ -174,14 +174,14 @@ async function getServices(params?: {
   sort?: string;
 }): Promise<StrapiService[]> {
   const res = await fetchStrapi<StrapiListResponse<StrapiService>>(
-    `/services?${SERVICE_POPULATE}&sort=${params?.sort ?? 'order:asc'}&pagination[pageSize]=100${params?.featured ? '&filters[isFeatured][$eq]=true' : ''}${params?.category ? `&filters[category][$eq]=${params.category}` : ''}`
+    `/services?${SERVICE_POPULATE}&sort=${params?.sort ?? 'order:asc'}&pagination[pageSize]=100${params?.featured ? '&filters[isFeatured]=true' : ''}${params?.category ? `&filters[category]=${params.category}` : ''}`
   );
   return res.data;
 }
 
 async function getServiceBySlug(slug: string): Promise<StrapiService | null> {
   const res = await fetchStrapi<StrapiListResponse<StrapiService>>(
-    `/services?filters[slug][$eq]=${slug}&${SERVICE_POPULATE}`
+    `/services?filters[slug]=${slug}&${SERVICE_POPULATE}`
   );
   return res.data[0] ?? null;
 }
@@ -199,8 +199,8 @@ async function getProducts(params?: {
     PRODUCT_POPULATE,
     `sort=${params?.sort ?? 'publishedAt:desc'}`,
     'pagination[pageSize]=100',
-    ...(params?.featured ? ['filters[isFeatured][$eq]=true'] : []),
-    ...(params?.category ? [`filters[category][$eq]=${params.category}`] : []),
+    ...(params?.featured ? ['filters[isFeatured]=true'] : []),
+    ...(params?.category ? [`filters[category]=${params.category}`] : []),
   ];
   const res = await fetchStrapi<StrapiListResponse<StrapiProduct>>(
     `/products?${queryParts.join('&')}`
@@ -210,7 +210,7 @@ async function getProducts(params?: {
 
 async function getProductBySlug(slug: string): Promise<StrapiProduct | null> {
   const res = await fetchStrapi<StrapiListResponse<StrapiProduct>>(
-    `/products?filters[slug][$eq]=${slug}&${PRODUCT_POPULATE}`
+    `/products?filters[slug]=${slug}&${PRODUCT_POPULATE}`
   );
   return res.data[0] ?? null;
 }
@@ -231,8 +231,8 @@ async function getBlogPosts(params?: {
     `sort=${params?.sort ?? 'publishedAt:desc'}`,
     `pagination[page]=${params?.page ?? 1}`,
     `pagination[pageSize]=${params?.pageSize ?? 9}`,
-    ...(params?.featured ? ['filters[isFeatured][$eq]=true'] : []),
-    ...(params?.category ? [`filters[category][slug][$eq]=${params.category}`] : []),
+    ...(params?.featured ? ['filters[isFeatured]=true'] : []),
+    ...(params?.category ? [`filters[category][slug]=${params.category}`] : []),
   ];
   return fetchStrapi<StrapiListResponse<StrapiBlogPost>>(
     `/blog-posts?${queryParts.join('&')}`
@@ -241,7 +241,7 @@ async function getBlogPosts(params?: {
 
 async function getBlogPostBySlug(slug: string): Promise<StrapiBlogPost | null> {
   const res = await fetchStrapi<StrapiListResponse<StrapiBlogPost>>(
-    `/blog-posts?filters[slug][$eq]=${slug}&${BLOG_POST_POPULATE}`
+    `/blog-posts?filters[slug]=${slug}&${BLOG_POST_POPULATE}`
   );
   return res.data[0] ?? null;
 }
@@ -266,8 +266,8 @@ async function getTestimonials(params?: {
     TESTIMONIAL_POPULATE,
     `sort=order:asc`,
     `pagination[pageSize]=${params?.limit ?? 50}`,
-    ...(params?.featured ? ['filters[isFeatured][$eq]=true'] : []),
-    ...(params?.serviceType ? [`filters[serviceType][$eq]=${params.serviceType}`] : []),
+    ...(params?.featured ? ['filters[isFeatured]=true'] : []),
+    ...(params?.serviceType ? [`filters[serviceType]=${params.serviceType}`] : []),
   ];
   const res = await fetchStrapi<StrapiListResponse<StrapiTestimonial>>(
     `/testimonials?${queryParts.join('&')}`
@@ -403,7 +403,7 @@ async function getOrders(params?: {
     `sort=createdAt:desc`,
     `pagination[page]=${params?.page ?? 1}`,
     `pagination[pageSize]=${params?.pageSize ?? 20}`,
-    ...(params?.status ? [`filters[status][$eq]=${params.status}`] : []),
+    ...(params?.status ? [`filters[status]=${params.status}`] : []),
   ];
   return fetchStrapi<StrapiListResponse<StrapiOrder>>(`/orders?${queryParts.join('&')}`);
 }
@@ -434,9 +434,9 @@ async function getCustomers(params?: {
     `sort=createdAt:desc`,
     `pagination[page]=${params?.page ?? 1}`,
     `pagination[pageSize]=${params?.pageSize ?? 20}`,
-    ...(params?.search
-      ? [`filters[$or][0][email][$containsi]=${params.search}&filters[$or][1][firstName][$containsi]=${params.search}&filters[$or][2][lastName][$containsi]=${params.search}`]
-      : []),
+    // NOTE: [$containsi]/[$or] operators are blocked by the LiteSpeed WAF.
+    // Customer search requires a custom Strapi endpoint that accepts a POST body.
+    // Omitted until that endpoint is implemented.
   ];
   return fetchStrapi<StrapiListResponse<StrapiCustomer>>(`/customers?${queryParts.join('&')}`);
 }
