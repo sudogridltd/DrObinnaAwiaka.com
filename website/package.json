@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
+    "dev": "NODE_ENV=development tsx server.ts",
     "build": "vite build",
     "build:server": "esbuild server.ts --bundle --platform=node --target=node22 --format=esm --outfile=server.js --external:express --external:compression --external:vike --external:vike-react --external:vite --external:@vitejs/plugin-react --external:tailwindcss",
     "build:all": "npm run build && npm run build:server",

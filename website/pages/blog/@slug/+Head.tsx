@@ -4,14 +4,6 @@ import type { BlogPostData } from './+data'
 export default function Head() {
   const { post } = useData<BlogPostData>()
   
-  if (!post) {
-    return (
-      <>
-        <title>Post Not Found | Dr Obinna Awiaka</title>
-      </>
-    )
-  }
-
   const title = post.seo?.metaTitle ?? post.title
   const description = post.seo?.metaDescription ?? post.excerpt
 
