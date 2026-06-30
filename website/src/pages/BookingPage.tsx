@@ -17,9 +17,9 @@ import { useTheme } from "@/components/ThemeProvider";
 
 const DEFAULT_SESSION_TYPES = [
   { id: "discovery", title: "Free Discovery Call", duration: "30 min", price: "Free", description: "Let's explore if we're the right fit and discuss your goals.", icon: Sparkles },
-  { id: "life-coaching", title: "1-on-1 Life Coaching", duration: "60 min", price: "$150", description: "Deep personal coaching session tailored to your journey.", icon: Clock },
-  { id: "executive", title: "Executive Coaching", duration: "90 min", price: "$300", description: "Intensive leadership and performance coaching session.", icon: Video },
-  { id: "couples", title: "Couples Coaching", duration: "75 min", price: "$200", description: "Strengthen your relationship with guided partner sessions.", icon: MapPin },
+  { id: "life-coaching", title: "1-on-1 Life Coaching", duration: "60 min", price: "₦247,500", description: "Deep personal coaching session tailored to your journey.", icon: Clock },
+  { id: "executive", title: "Executive Coaching", duration: "90 min", price: "₦495,000", description: "Intensive leadership and performance coaching session.", icon: Video },
+  { id: "couples", title: "Couples Coaching", duration: "75 min", price: "₦330,000", description: "Strengthen your relationship with guided partner sessions.", icon: MapPin },
 ];
 
 const DEFAULT_TIME_SLOTS = [
