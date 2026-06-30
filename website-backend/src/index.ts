@@ -38,5 +38,35 @@ export default {
     } catch (error) {
       console.error('❌ Permission setup failed:', error);
     }
+
+    // 3. One-time USD to NGN Migration
+    if (process.env.RUN_PRICE_CONVERSION === 'true') {
+      try {
+        console.log('🔄 Starting USD to NGN price conversion...');
+        const EXCHANGE_RATE = 1650;
+        const THRESHOLD = 5000;
+        
+        const products = (await strapi.db.query('api::product.product').findMany()) as any[];
+        let updatedCount = 0;
+        
+        for (const product of products) {
+          if (product.price && product.price < THRESHOLD) {
+            console.log(`Converting ${product.title} price: $${product.price} -> ₦${product.price * EXCHANGE_RATE}`);
+            const updateData: any = { price: product.price * EXCHANGE_RATE };
+            if (product.originalPrice && product.originalPrice < THRESHOLD) {
+              updateData.originalPrice = product.originalPrice * EXCHANGE_RATE;
+            }
+            await strapi.db.query('api::product.product').update({
+              where: { id: product.id },
+              data: updateData
+            });
+            updatedCount++;
+          }
+        }
+        console.log(`✅ Successfully converted ${updatedCount} products to NGN.`);
+      } catch (error) {
+        console.error('❌ Failed to run price conversion:', error);
+      }
+    }
   },
 };
